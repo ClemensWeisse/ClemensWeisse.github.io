@@ -204,7 +204,8 @@ getText =
     Http.get
         { 
             -- url = "https://cloud.informatik.uni-halle.de/s/xD7kiaCPxnXsMT3/download"
-          url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
+        --   url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
+          url = "https://clemensweisse.github.io/" ++ "Sleep_Efficiency.csv"
         , expect = Http.expectString GotText
         }
 
