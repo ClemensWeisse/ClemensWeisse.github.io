@@ -6163,7 +6163,7 @@ var $author$project$Report3$init = function (_v0) {
 		{
 			data: $author$project$Report3$Loading,
 			orderOfDimensions: _List_fromArray(
-				[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+				[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]),
 			selectedStick1IconsPlot: 'Sleep duration',
 			selectedStick2IconsPlot: 'Sleep efficiency',
 			selectedStick3IconsPlot: 'REM sleep percentage',
@@ -6732,6 +6732,7 @@ var $author$project$Report3$csvString_to_data = function (csvRaw) {
 	return $lovasoa$elm_csv$Csv$split(csvRaw);
 };
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$core$String$fromFloat = _String_fromNumber;
 var $elm_community$list_extra$List$Extra$getAt = F2(
 	function (idx, xs) {
 		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
@@ -6992,7 +6993,6 @@ var $gampleman$elm_visualization$Statistics$tickStep = F3(
 			$elm$core$Basics$sqrt(2)) > -1) ? (step1 * 2) : step1));
 		return (_Utils_cmp(stop, start) < 0) ? (-step2) : step2;
 	});
-var $elm$core$String$fromFloat = _String_fromNumber;
 var $elm$core$String$cons = _String_cons;
 var $elm$core$String$fromChar = function (_char) {
 	return A2($elm$core$String$cons, _char, '');
@@ -7929,7 +7929,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
 					_List_fromArray(
 						[minX, minY, vWidth, vHeight]))));
 	});
-var $author$project$Report3$w = 1600;
+var $author$project$Report3$w = 2150;
 var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -8128,17 +8128,6 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 					$author$project$Report3$drawStickFigure(scaleList),
 					data))
 			]));
-};
-var $author$project$Report3$listListStringToString = function (listlist) {
-	return A2(
-		$elm$core$String$join,
-		'\n',
-		A2(
-			$elm$core$List$map,
-			function (li) {
-				return A2($elm$core$String$join, ', ', li);
-			},
-			listlist));
 };
 var $author$project$Report3$listsToMultiDimData = F2(
 	function (listOfPointVals, nameOfDims) {
@@ -8945,8 +8934,30 @@ var $folkertdev$one_true_path_experiment$Curve$linear = function (points) {
 };
 var $gampleman$elm_visualization$Shape$linearCurve = $folkertdev$one_true_path_experiment$Curve$linear;
 var $elm$core$Basics$modBy = _Basics_modBy;
-var $author$project$Report3$scaleIndexNum = F2(
-	function (pointVals, indexNum) {
+var $elm_community$list_extra$List$Extra$initialize = F2(
+	function (n, f) {
+		var step = F2(
+			function (i, acc) {
+				step:
+				while (true) {
+					if (i < 0) {
+						return acc;
+					} else {
+						var $temp$i = i - 1,
+							$temp$acc = A2(
+							$elm$core$List$cons,
+							f(i),
+							acc);
+						i = $temp$i;
+						acc = $temp$acc;
+						continue step;
+					}
+				}
+			});
+		return A2(step, n - 1, _List_Nil);
+	});
+var $author$project$Report3$scaleIndexNum = F3(
+	function (pointVals, indexNum, numberOfAttr) {
 		return A2(
 			$gampleman$elm_visualization$Scale$linear,
 			_Utils_Tuple2($author$project$Report3$h, 0),
@@ -8956,8 +8967,15 @@ var $author$project$Report3$scaleIndexNum = F2(
 				$gampleman$elm_visualization$Statistics$extent(
 					A2(
 						$elm$core$Maybe$withDefault,
-						_List_fromArray(
-							[0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0]),
+						A2(
+							$elm$core$List$map,
+							$elm$core$Basics$toFloat,
+							A2(
+								$elm_community$list_extra$List$Extra$initialize,
+								numberOfAttr,
+								function (el) {
+									return el * 10;
+								})),
 						A2(
 							$elm_community$list_extra$List$Extra$getAt,
 							indexNum,
@@ -8998,7 +9016,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 	var scaleList = A2(
 		$elm$core$List$map,
 		function (indexNum) {
-			return A2($author$project$Report3$scaleIndexNum, pointValues, indexNum);
+			return A3($author$project$Report3$scaleIndexNum, pointValues, indexNum, numberOfAttributes);
 		},
 		indexNumberList);
 	var yTransposedList = A3(
@@ -9183,12 +9201,12 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 		$elm_community$typed_svg$TypedSvg$svg,
 		_List_fromArray(
 			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, (2 * $author$project$Report3$w) + $author$project$Report3$xPlotPadding, $author$project$Report3$h + (2 * $author$project$Report3$yPlotPadding)),
+				$elm_community$typed_svg$TypedSvg$Attributes$style('background: white'),
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 70, 0, (2 * $author$project$Report3$w) + $author$project$Report3$xPlotPadding, $author$project$Report3$h + (2 * $author$project$Report3$yPlotPadding)),
 				$elm_community$typed_svg$TypedSvg$Attributes$width(
 				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
 				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
-				$elm_community$typed_svg$TypedSvg$Attributes$style('background: white')
+				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
 			]),
 		_List_fromArray(
 			[
@@ -9218,28 +9236,34 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 			]));
 };
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $elm_community$list_extra$List$Extra$removeAt = F2(
-	function (index, l) {
-		if (index < 0) {
-			return l;
-		} else {
-			var _v0 = A2($elm$core$List$drop, index, l);
-			if (!_v0.b) {
-				return l;
-			} else {
-				var rest = _v0.b;
-				return _Utils_ap(
-					A2($elm$core$List$take, index, l),
-					rest);
-			}
-		}
-	});
 var $elm_community$typed_svg$TypedSvg$Types$Align = F2(
 	function (a, b) {
 		return {$: 'Align', a: a, b: b};
 	});
 var $elm_community$typed_svg$TypedSvg$Types$ScaleMin = {$: 'ScaleMin'};
 var $elm_community$typed_svg$TypedSvg$Types$Slice = {$: 'Slice'};
+var $author$project$Report3$adjustLabels = function (description) {
+	switch (description) {
+		case 'Age':
+			return description + ' (in years)';
+		case 'Gender':
+			return description + ' (0: men, 1: women)';
+		case 'Bedtime':
+			return description + ' (in hours)';
+		case 'Wakeup time':
+			return description + ' (in hours)';
+		case 'Sleep duration':
+			return description + ' (in hours)';
+		case 'Caffeine consumption':
+			return description + ' (in mg)';
+		case 'Alcohol consumption':
+			return description + ' (in oz)';
+		case 'Smoking status':
+			return description + ' (0: nonsmokers, 1: smokers)';
+		default:
+			return description;
+	}
+};
 var $author$project$Report3$IconsWithXY = F2(
 	function (a, b) {
 		return {$: 'IconsWithXY', a: a, b: b};
@@ -9461,7 +9485,8 @@ var $author$project$Report3$scatterplot = F2(
 										]),
 									_List_fromArray(
 										[
-											$elm$html$Html$text(pointData.xDescription)
+											$elm$html$Html$text(
+											$author$project$Report3$adjustLabels(pointData.xDescription))
 										]))
 								])),
 							A2(
@@ -9491,13 +9516,15 @@ var $author$project$Report3$scatterplot = F2(
 											_List_fromArray(
 												['sans-serif'])),
 											$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeCaptionsInPx),
-											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+											(pointData.yDescription === 'Smoking status') ? 50 : 0),
 											$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-30),
 											$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
 										]),
 									_List_fromArray(
 										[
-											$elm$html$Html$text(pointData.yDescription)
+											$elm$html$Html$text(
+											$author$project$Report3$adjustLabels(pointData.yDescription))
 										]))
 								]))
 						])),
@@ -9517,6 +9544,33 @@ var $author$project$Report3$scatterplot = F2(
 						data,
 						numOfStackedPointsList))
 				]));
+	});
+var $elm_community$list_extra$List$Extra$updateAt = F3(
+	function (index, fn, list) {
+		if (index < 0) {
+			return list;
+		} else {
+			var tail = A2($elm$core$List$drop, index, list);
+			if (tail.b) {
+				var x = tail.a;
+				var xs = tail.b;
+				return _Utils_ap(
+					A2($elm$core$List$take, index, list),
+					A2(
+						$elm$core$List$cons,
+						fn(x),
+						xs));
+			} else {
+				return list;
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$setAt = F2(
+	function (index, value) {
+		return A2(
+			$elm_community$list_extra$List$Extra$updateAt,
+			index,
+			$elm$core$Basics$always(value));
 	});
 var $elm$core$String$toFloat = _String_toFloat;
 var $author$project$Report3$dataHandling = function (model) {
@@ -9561,23 +9615,13 @@ var $author$project$Report3$dataHandling = function (model) {
 				$elm$core$Maybe$withDefault,
 				_List_Nil,
 				$elm$core$List$head(filteredEmptyValuesDataSet));
-			var filteredHeadList = A2(
-				$elm_community$list_extra$List$Extra$removeAt,
-				2,
-				A2(
-					$elm_community$list_extra$List$Extra$removeAt,
-					3,
-					A2(
-						$elm_community$list_extra$List$Extra$removeAt,
-						4,
-						A2($elm_community$list_extra$List$Extra$removeAt, 13, headListData))));
 			var movedIndexHeadList = A2(
 				$elm$core$List$map,
 				function (num) {
 					return A2(
 						$elm$core$Maybe$withDefault,
 						'',
-						A2($elm_community$list_extra$List$Extra$getAt, num, filteredHeadList));
+						A2($elm_community$list_extra$List$Extra$getAt, num, headListData));
 				},
 				model.orderOfDimensions);
 			var headTailTranspData = $elm_community$list_extra$List$Extra$transpose(filteredEmptyValuesDataSet);
@@ -9585,50 +9629,102 @@ var $author$project$Report3$dataHandling = function (model) {
 				$elm$core$Maybe$withDefault,
 				_List_Nil,
 				$elm$core$List$tail(filteredEmptyValuesDataSet));
-			var filteredTailList = $elm_community$list_extra$List$Extra$transpose(
+			var maleTo0FemaleTo1List = A2(
+				$elm$core$List$map,
+				function (el) {
+					return (el === 'Male') ? '0' : '1';
+				},
 				A2(
-					$elm_community$list_extra$List$Extra$removeAt,
-					2,
+					$elm$core$Maybe$withDefault,
+					_List_Nil,
 					A2(
-						$elm_community$list_extra$List$Extra$removeAt,
-						3,
-						A2(
-							$elm_community$list_extra$List$Extra$removeAt,
-							4,
-							A2(
-								$elm_community$list_extra$List$Extra$removeAt,
-								13,
-								$elm_community$list_extra$List$Extra$transpose(tailListData))))));
-			var movedIndexTailList = $elm_community$list_extra$List$Extra$transpose(
+						$elm_community$list_extra$List$Extra$getAt,
+						2,
+						$elm_community$list_extra$List$Extra$transpose(tailListData))));
+			var smokingNo0Yes1List = A2(
+				$elm$core$List$map,
+				function (el) {
+					return (el === 'No') ? '0' : '1';
+				},
 				A2(
-					$elm$core$List$map,
-					function (num) {
-						return A2(
-							$elm$core$Maybe$withDefault,
-							_List_Nil,
-							A2(
-								$elm_community$list_extra$List$Extra$getAt,
-								num,
-								$elm_community$list_extra$List$Extra$transpose(filteredTailList)));
-					},
-					model.orderOfDimensions));
-			var multiDimData = A2(
-				$author$project$Report3$listsToMultiDimData,
-				A2(
+					$elm$core$Maybe$withDefault,
+					_List_Nil,
+					A2(
+						$elm_community$list_extra$List$Extra$getAt,
+						13,
+						$elm_community$list_extra$List$Extra$transpose(tailListData))));
+			var dataSetRecord = A2(
+				$elm$core$Maybe$withDefault,
+				_List_Nil,
+				$elm$core$List$tail(linesOfDataSet));
+			var dataSetHeader = A2(
+				$elm$core$Maybe$withDefault,
+				_List_Nil,
+				$elm$core$List$head(linesOfDataSet));
+			var numOfColumns = $elm$core$List$length(dataSetHeader);
+			var convertTimeToFloatStringList = function (num) {
+				return A2(
 					$elm$core$List$map,
 					function (li) {
-						return A2(
-							$elm$core$List$map,
+						return $elm$core$String$fromFloat(
 							A2(
-								$elm$core$Basics$composeR,
-								$elm$core$String$toFloat,
-								$elm$core$Maybe$withDefault(0.0)),
-							li);
+								$elm$core$Maybe$withDefault,
+								0.0,
+								$elm$core$String$toFloat(
+									A2(
+										$elm$core$Maybe$withDefault,
+										'',
+										A2($elm_community$list_extra$List$Extra$getAt, 0, li))))) + ('.' + ((A2(
+							$elm$core$Maybe$withDefault,
+							'',
+							A2($elm_community$list_extra$List$Extra$getAt, 1, li)) === '30') ? '5' : '0'));
 					},
-					movedIndexTailList),
-				movedIndexHeadList);
-			var filteredData = $author$project$Report3$listListStringToString(filteredEmptyValuesDataSet);
-			var filtTranspData = $elm_community$list_extra$List$Extra$transpose(tailListData);
+					A2(
+						$elm$core$List$map,
+						function (el) {
+							return A2(
+								$elm$core$List$take,
+								2,
+								A2($elm$core$String$split, ':', el));
+						},
+						A2(
+							$elm$core$List$map,
+							function (el) {
+								return A2(
+									$elm$core$Maybe$withDefault,
+									'',
+									A2(
+										$elm_community$list_extra$List$Extra$getAt,
+										1,
+										A2($elm$core$String$split, ' ', el)));
+							},
+							A2(
+								$elm$core$Maybe$withDefault,
+								_List_Nil,
+								A2(
+									$elm_community$list_extra$List$Extra$getAt,
+									num,
+									$elm_community$list_extra$List$Extra$transpose(tailListData))))));
+			};
+			var convertWakeupTimeToList = convertTimeToFloatStringList(4);
+			var convertBedTimeToList = convertTimeToFloatStringList(3);
+			var filtTranspData = A3(
+				$elm_community$list_extra$List$Extra$setAt,
+				13,
+				smokingNo0Yes1List,
+				A3(
+					$elm_community$list_extra$List$Extra$setAt,
+					4,
+					convertWakeupTimeToList,
+					A3(
+						$elm_community$list_extra$List$Extra$setAt,
+						3,
+						convertBedTimeToList,
+						A3(
+							$elm_community$list_extra$List$Extra$setAt,
+							2,
+							maleTo0FemaleTo1List,
+							$elm_community$list_extra$List$Extra$transpose(tailListData)))));
 			var floatTuple = function (num) {
 				return _Utils_Tuple2(
 					A2(
@@ -9650,89 +9746,18 @@ var $author$project$Report3$dataHandling = function (model) {
 							_List_Nil,
 							A2($elm_community$list_extra$List$Extra$getAt, num, filtTranspData))));
 			};
-			var genderList = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				A2($elm_community$list_extra$List$Extra$getAt, 2, filtTranspData));
-			var idList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toInt,
-					$elm$core$Maybe$withDefault(0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 0, filtTranspData)));
-			var lightSleepPercentageList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toInt,
-					$elm$core$Maybe$withDefault(0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 9, filtTranspData)));
-			var rEMSleepPercentageList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toInt,
-					$elm$core$Maybe$withDefault(0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 7, filtTranspData)));
-			var sleepDurationList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 5, filtTranspData)));
-			var sleepEfficiencyList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 6, filtTranspData)));
-			var smokingStatusList = A2(
-				$elm$core$List$map,
-				function (str) {
-					return (str === 'True') ? true : false;
-				},
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 13, filtTranspData)));
-			var wakeupTimeList = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				A2($elm_community$list_extra$List$Extra$getAt, 4, filtTranspData));
-			var exerciseFrequencyList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 14, filtTranspData)));
 			var dropdownCases = function (stringSubject) {
 				switch (stringSubject) {
 					case 'ID':
 						return floatTuple(0);
 					case 'Age':
 						return floatTuple(1);
+					case 'Gender':
+						return floatTuple(2);
+					case 'Bedtime':
+						return floatTuple(3);
+					case 'Wakeup time':
+						return floatTuple(4);
 					case 'Sleep duration':
 						return floatTuple(5);
 					case 'Sleep efficiency':
@@ -9749,82 +9774,45 @@ var $author$project$Report3$dataHandling = function (model) {
 						return floatTuple(11);
 					case 'Alcohol consumption':
 						return floatTuple(12);
+					case 'Smoking status':
+						return floatTuple(13);
 					case 'Exercise frequency':
 						return floatTuple(14);
 					default:
 						return _Utils_Tuple2('', _List_Nil);
 				}
 			};
-			var deepSleepPercentageList = A2(
-				$elm$core$List$map,
+			var movedIndexTailList = $elm_community$list_extra$List$Extra$transpose(
 				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toInt,
-					$elm$core$Maybe$withDefault(0)),
+					$elm$core$List$map,
+					function (num) {
+						return A2(
+							$elm$core$Maybe$withDefault,
+							_List_Nil,
+							A2($elm_community$list_extra$List$Extra$getAt, num, filtTranspData));
+					},
+					model.orderOfDimensions));
+			var multiDimData = A2(
+				$author$project$Report3$listsToMultiDimData,
 				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 8, filtTranspData)));
-			var dataSetRecord = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				$elm$core$List$tail(linesOfDataSet));
-			var dataSetHeader = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				$elm$core$List$head(linesOfDataSet));
-			var numOfColumns = $elm$core$List$length(dataSetHeader);
-			var data = $author$project$Report3$listListStringToString(linesOfDataSet);
-			var caffeineConsumptionList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 11, filtTranspData)));
-			var bedtimeList = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				A2($elm_community$list_extra$List$Extra$getAt, 3, filtTranspData));
-			var awakeningsList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 10, filtTranspData)));
+					$elm$core$List$map,
+					function (li) {
+						return A2(
+							$elm$core$List$map,
+							A2(
+								$elm$core$Basics$composeR,
+								$elm$core$String$toFloat,
+								$elm$core$Maybe$withDefault(0.0)),
+							li);
+					},
+					movedIndexTailList),
+				movedIndexHeadList);
 			var allListsHaveTheSameLength = A2(
 				$elm$core$List$all,
 				function (num) {
 					return (num === 15) ? true : false;
 				},
 				listOfNumOfCols);
-			var alcoholConsumptionList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toFloat,
-					$elm$core$Maybe$withDefault(0.0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 12, filtTranspData)));
-			var ageList = A2(
-				$elm$core$List$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$String$toInt,
-					$elm$core$Maybe$withDefault(0)),
-				A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					A2($elm_community$list_extra$List$Extra$getAt, 1, filtTranspData)));
 			var _v1 = dropdownCases(model.selectedYAxisScatterPlot);
 			var yAxisHeadSP = _v1.a;
 			var yAxisTailSPList = _v1.b;
@@ -10094,6 +10082,39 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedXAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedXAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedXAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Sleep duration'),
 										$elm$html$Html$Attributes$selected('Sleep duration' === model.selectedXAxisScatterPlot)
 									]),
@@ -10182,6 +10203,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedXAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedXAxisScatterPlot)
 									]),
@@ -10231,6 +10263,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedYAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedYAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedYAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -10319,6 +10384,17 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Alcohol consumption')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedYAxisScatterPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -10428,6 +10504,39 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedXAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedXAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedXAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Sleep duration'),
 										$elm$html$Html$Attributes$selected('Sleep duration' === model.selectedXAxisIconsPlot)
 									]),
@@ -10516,6 +10625,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedXAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedXAxisIconsPlot)
 									]),
@@ -10565,6 +10685,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedYAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedYAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedYAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -10658,6 +10811,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedYAxisIconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedYAxisIconsPlot)
 									]),
@@ -10704,6 +10868,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedStick1IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedStick1IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedStick1IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -10797,6 +10994,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedStick1IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedStick1IconsPlot)
 									]),
@@ -10841,6 +11049,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedStick2IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedStick2IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedStick2IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -10934,6 +11175,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedStick2IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedStick2IconsPlot)
 									]),
@@ -10978,6 +11230,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedStick3IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedStick3IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedStick3IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -11071,6 +11356,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedStick3IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedStick3IconsPlot)
 									]),
@@ -11115,6 +11411,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedStick4IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedStick4IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedStick4IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -11208,6 +11537,17 @@ var $author$project$Report3$view = function (model) {
 								$elm$html$Html$option,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedStick4IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
 										$elm$html$Html$Attributes$value('Exercise frequency'),
 										$elm$html$Html$Attributes$selected('Exercise frequency' === model.selectedStick4IconsPlot)
 									]),
@@ -11252,6 +11592,39 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Age')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Gender'),
+										$elm$html$Html$Attributes$selected('Gender' === model.selectedStick5IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Gender')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Bedtime'),
+										$elm$html$Html$Attributes$selected('Bedtime' === model.selectedStick5IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bedtime')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Wakeup time'),
+										$elm$html$Html$Attributes$selected('Wakeup time' === model.selectedStick5IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Wakeup time')
 									])),
 								A2(
 								$elm$html$Html$option,
@@ -11340,6 +11713,17 @@ var $author$project$Report3$view = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('Alcohol consumption')
+									])),
+								A2(
+								$elm$html$Html$option,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$value('Smoking status'),
+										$elm$html$Html$Attributes$selected('Smoking status' === model.selectedStick5IconsPlot)
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Smoking status')
 									])),
 								A2(
 								$elm$html$Html$option,

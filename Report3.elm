@@ -44,7 +44,7 @@ yPlotPadding =
 
 w : Float
 w =
-    1600
+    2150
 
 
 h : Float
@@ -191,7 +191,7 @@ init _ =
       , showScatterPlot = True
       , showParallelCoordinates = False
       , showIcons = False
-      , orderOfDimensions = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+      , orderOfDimensions = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
 
       --   , scatterPlotWithXY = ( "ID", "Age" )
       }
@@ -202,10 +202,9 @@ init _ =
 getText : Cmd Msg
 getText =
     Http.get
-        { 
-            -- url = "https://cloud.informatik.uni-halle.de/s/xD7kiaCPxnXsMT3/download"
-        --   url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
+        { -- url = "https://cloud.informatik.uni-halle.de/s/xD7kiaCPxnXsMT3/download"
           url = "https://clemensweisse.github.io/" ++ "Sleep_Efficiency.csv"
+        --   url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
         , expect = Http.expectString GotText
         }
 
@@ -347,6 +346,9 @@ view model =
             , select [ onInput XAxisScatterPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedXAxisScatterPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedXAxisScatterPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedXAxisScatterPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedXAxisScatterPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedXAxisScatterPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedXAxisScatterPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedXAxisScatterPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedXAxisScatterPlot) ] [ text "REM sleep percentage" ]
@@ -355,12 +357,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedXAxisScatterPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedXAxisScatterPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedXAxisScatterPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedXAxisScatterPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedXAxisScatterPlot) ] [ text "Exercise frequency" ]
                 ]
             , div [ Html.Attributes.style "display" "inline-block", Html.Attributes.style "margin-left" "50px", Html.Attributes.style "margin-right" "10px" ] [ text "Select Y-Axis Value " ]
             , select [ onInput YAxisScatterPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedYAxisScatterPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedYAxisScatterPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedYAxisScatterPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedYAxisScatterPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedYAxisScatterPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedYAxisScatterPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedYAxisScatterPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedYAxisScatterPlot) ] [ text "REM sleep percentage" ]
@@ -369,6 +375,7 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedYAxisScatterPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedYAxisScatterPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedYAxisScatterPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedYAxisScatterPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedYAxisScatterPlot) ] [ text "Exercise frequency" ]
                 ]
             ]
@@ -414,6 +421,9 @@ view model =
             , select [ onInput XAxisIconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedXAxisIconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedXAxisIconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedXAxisIconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedXAxisIconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedXAxisIconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedXAxisIconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedXAxisIconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedXAxisIconsPlot) ] [ text "REM sleep percentage" ]
@@ -422,12 +432,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedXAxisIconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedXAxisIconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedXAxisIconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedXAxisIconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedXAxisIconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , div [ Html.Attributes.style "display" "inline-block", Html.Attributes.style "margin-left" "50px", Html.Attributes.style "margin-right" "10px" ] [ text "Select Y-Axis Value " ]
             , select [ onInput YAxisIconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedYAxisIconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedYAxisIconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedYAxisIconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedYAxisIconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedYAxisIconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedYAxisIconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedYAxisIconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedYAxisIconsPlot) ] [ text "REM sleep percentage" ]
@@ -436,6 +450,7 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedYAxisIconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedYAxisIconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedYAxisIconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedYAxisIconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedYAxisIconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , br [] []
@@ -449,6 +464,9 @@ view model =
             , select [ onInput Stick1IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick1IconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedStick1IconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedStick1IconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedStick1IconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedStick1IconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedStick1IconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedStick1IconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedStick1IconsPlot) ] [ text "REM sleep percentage" ]
@@ -457,12 +475,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedStick1IconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedStick1IconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedStick1IconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedStick1IconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedStick1IconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , div (htmlPropsDropDowns 1) [ Html.text "Select Limb 2 Value " ]
             , select [ onInput Stick2IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick2IconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedStick2IconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedStick2IconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedStick2IconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedStick2IconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedStick2IconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedStick2IconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedStick2IconsPlot) ] [ text "REM sleep percentage" ]
@@ -471,12 +493,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedStick2IconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedStick2IconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedStick2IconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedStick2IconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedStick2IconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , div (htmlPropsDropDowns 2) [ Html.text "Select Limb 3 Value " ]
             , select [ onInput Stick3IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick3IconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedStick3IconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedStick3IconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedStick3IconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedStick3IconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedStick3IconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedStick3IconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedStick3IconsPlot) ] [ text "REM sleep percentage" ]
@@ -485,12 +511,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedStick3IconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedStick3IconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedStick3IconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedStick3IconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedStick3IconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , div (htmlPropsDropDowns 3) [ Html.text "Select Limb 4 Value " ]
             , select [ onInput Stick4IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick4IconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedStick4IconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedStick4IconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedStick4IconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedStick4IconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedStick4IconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedStick4IconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedStick4IconsPlot) ] [ text "REM sleep percentage" ]
@@ -499,12 +529,16 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedStick4IconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedStick4IconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedStick4IconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedStick4IconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedStick4IconsPlot) ] [ text "Exercise frequency" ]
                 ]
             , div (htmlPropsDropDowns 4) [ Html.text "Select Limb 5 Value " ]
             , select [ onInput Stick5IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick5IconsPlot) ] [ text "ID" ]
                 , option [ value "Age", selected ("Age" == model.selectedStick5IconsPlot) ] [ text "Age" ]
+                , option [ value "Gender", selected ("Gender" == model.selectedStick5IconsPlot) ] [ text "Gender" ]
+                , option [ value "Bedtime", selected ("Bedtime" == model.selectedStick5IconsPlot) ] [ text "Bedtime" ]
+                , option [ value "Wakeup time", selected ("Wakeup time" == model.selectedStick5IconsPlot) ] [ text "Wakeup time" ]
                 , option [ value "Sleep duration", selected ("Sleep duration" == model.selectedStick5IconsPlot) ] [ text "Sleep duration" ]
                 , option [ value "Sleep efficiency", selected ("Sleep efficiency" == model.selectedStick5IconsPlot) ] [ text "Sleep efficiency" ]
                 , option [ value "REM sleep percentage", selected ("REM sleep percentage" == model.selectedStick5IconsPlot) ] [ text "REM sleep percentage" ]
@@ -513,6 +547,7 @@ view model =
                 , option [ value "Awakenings", selected ("Awakenings" == model.selectedStick5IconsPlot) ] [ text "Awakenings" ]
                 , option [ value "Caffeine consumption", selected ("Caffeine consumption" == model.selectedStick5IconsPlot) ] [ text "Caffeine consumption" ]
                 , option [ value "Alcohol consumption", selected ("Alcohol consumption" == model.selectedStick5IconsPlot) ] [ text "Alcohol consumption" ]
+                , option [ value "Smoking status", selected ("Smoking status" == model.selectedStick5IconsPlot) ] [ text "Smoking status" ]
                 , option [ value "Exercise frequency", selected ("Exercise frequency" == model.selectedStick5IconsPlot) ] [ text "Exercise frequency" ]
                 ]
             ]
@@ -633,62 +668,177 @@ dataHandling model =
                     List.Extra.transpose filteredEmptyValuesDataSet
 
                 filtTranspData =
-                    List.Extra.transpose tailListData
+                    tailListData
+                        |> List.Extra.transpose
+                        |> List.Extra.setAt 2 maleTo0FemaleTo1List
+                        |> List.Extra.setAt 3 convertBedTimeToList
+                        |> List.Extra.setAt 4 convertWakeupTimeToList
+                        |> List.Extra.setAt 13 smokingNo0Yes1List
 
-                idList =
-                    List.Extra.getAt 0 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-
-                ageList =
-                    List.Extra.getAt 1 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-
-                genderList =
-                    List.Extra.getAt 2 filtTranspData |> Maybe.withDefault []
-
-                bedtimeList =
-                    List.Extra.getAt 3 filtTranspData |> Maybe.withDefault []
-
-                wakeupTimeList =
-                    List.Extra.getAt 4 filtTranspData |> Maybe.withDefault []
-
-                sleepDurationList =
-                    List.Extra.getAt 5 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-
-                sleepEfficiencyList =
-                    List.Extra.getAt 6 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-
-                rEMSleepPercentageList =
-                    List.Extra.getAt 7 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-
-                deepSleepPercentageList =
-                    List.Extra.getAt 8 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-
-                lightSleepPercentageList =
-                    List.Extra.getAt 9 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-
-                awakeningsList =
-                    List.Extra.getAt 10 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-
-                caffeineConsumptionList =
-                    List.Extra.getAt 11 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-
-                alcoholConsumptionList =
-                    List.Extra.getAt 12 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-
-                smokingStatusList =
-                    List.Extra.getAt 13 filtTranspData
+                maleTo0FemaleTo1List =
+                    tailListData
+                        |> List.Extra.transpose
+                        |> List.Extra.getAt 2
                         |> Maybe.withDefault []
                         |> List.map
-                            (\str ->
-                                if str == "True" then
-                                    True
+                            (\el ->
+                                if el == "Male" then
+                                    "0"
 
                                 else
-                                    False
+                                    "1"
                             )
 
-                exerciseFrequencyList =
-                    List.Extra.getAt 14 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                smokingNo0Yes1List =
+                    tailListData
+                        |> List.Extra.transpose
+                        |> List.Extra.getAt 13
+                        |> Maybe.withDefault []
+                        |> List.map
+                            (\el ->
+                                if el == "No" then
+                                    "0"
 
+                                else
+                                    "1"
+                            )
+
+                convertBedTimeToList =
+                    convertTimeToFloatStringList 3
+
+                convertWakeupTimeToList =
+                    convertTimeToFloatStringList 4
+
+                convertTimeToFloatStringList num =
+                    tailListData
+                        |> List.Extra.transpose
+                        |> List.Extra.getAt num
+                        |> Maybe.withDefault []
+                        |> List.map (\el -> List.Extra.getAt 1 (String.split " " el) |> Maybe.withDefault "")
+                        -- "2021-07-03 01:30:00" -> "01:30:00"
+                        |> List.map
+                            (\el ->
+                                String.split ":" el
+                                    -- "01:30:00" -> ["01", "30", "00"]
+                                    |> List.take 2
+                             -- ["01", "30", "00"] -> ["01", "30"]
+                            )
+                        |> List.map
+                            (\li ->
+                                (li
+                                    |> List.Extra.getAt 0
+                                    -- ["01", "30"] -> "01"
+                                    |> Maybe.withDefault ""
+                                    |> String.toFloat
+                                    -- "01" -> 1
+                                    |> Maybe.withDefault 0.0
+                                    |> String.fromFloat
+                                 -- 1 -> "1"
+                                )
+                                    ++ "."
+                                    ++ (if (li |> List.Extra.getAt 1 |> Maybe.withDefault "") == "30" then
+                                            -- ["01", "30"] -> "30"
+                                            "5"
+                                            -- "30" -> "5"
+
+                                        else
+                                            "0"
+                                       )
+                             -- ["01", "30"] -> "1.5"
+                            )
+
+                -- convertBedTimeToList =
+                --     tailListData
+                --         |> List.Extra.transpose
+                --         |> List.Extra.getAt 3
+                --         |> Maybe.withDefault []
+                --         |> List.map (\el -> List.Extra.getAt 1 (String.split " " el) |> Maybe.withDefault "")
+                --         -- "2021-07-03 01:30:00" -> "01:30:00"
+                --         |> List.map
+                --             (\el ->
+                --                 String.split ":" el
+                --                     -- "01:30:00" -> ["01", "30", "00"]
+                --                     |> List.take 2
+                --              -- ["01", "30", "00"] -> ["01", "30"]
+                --             )
+                --         |> List.map
+                --             (\li ->
+                --                 (li
+                --                     |> List.Extra.getAt 0
+                --                     -- ["01", "30"] -> "01"
+                --                     |> Maybe.withDefault ""
+                --                     |> String.toFloat
+                --                     -- "01" -> 1
+                --                     |> Maybe.withDefault 0.0
+                --                     |> String.fromFloat
+                --                  -- 1 -> "1"
+                --                 )
+                --                     ++ "."
+                --                     ++ (if (li |> List.Extra.getAt 1 |> Maybe.withDefault "") == "30" then
+                --                             -- ["01", "30"] -> "30"
+                --                             "5"
+                --                             -- "30" -> "5"
+                --                         else
+                --                             "0"
+                --                        )
+                --              -- ["01", "30"] -> "1.5"
+                --             )
+                -- convertBedTimeToDecimal =
+                --     List.map
+                --         (\li ->
+                --             (li
+                --                 |> List.Extra.getAt 0
+                --                 |> Maybe.withDefault ""
+                --                 |> String.toFloat
+                --                 |> Maybe.withDefault 0.0
+                --                 |> String.fromFloat
+                --             )
+                --                 ++ "."
+                --                 ++ (if (li |> List.Extra.getAt 1 |> Maybe.withDefault "") == "30" then
+                --                         "5"
+                --                     else
+                --                         "0"
+                --                    )
+                --         )
+                --         convertBedTimeToList
+                -- idList =
+                --     List.Extra.getAt 0 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
+                -- ageList =
+                --     List.Extra.getAt 1 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
+                -- genderList =
+                --     List.Extra.getAt 2 filtTranspData |> Maybe.withDefault []
+                -- bedtimeList =
+                --     List.Extra.getAt 3 filtTranspData |> Maybe.withDefault []
+                -- wakeupTimeList =
+                --     List.Extra.getAt 4 filtTranspData |> Maybe.withDefault []
+                -- sleepDurationList =
+                --     List.Extra.getAt 5 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                -- sleepEfficiencyList =
+                --     List.Extra.getAt 6 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                -- rEMSleepPercentageList =
+                --     List.Extra.getAt 7 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
+                -- deepSleepPercentageList =
+                --     List.Extra.getAt 8 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
+                -- lightSleepPercentageList =
+                --     List.Extra.getAt 9 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
+                -- awakeningsList =
+                --     List.Extra.getAt 10 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                -- caffeineConsumptionList =
+                --     List.Extra.getAt 11 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                -- alcoholConsumptionList =
+                --     List.Extra.getAt 12 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
+                -- smokingStatusList =
+                --     List.Extra.getAt 13 filtTranspData
+                --         |> Maybe.withDefault []
+                --         |> List.map
+                --             (\str ->
+                --                 if str == "True" then
+                --                     True
+                --                 else
+                --                     False
+                --             )
+                -- exerciseFrequencyList =
+                --     List.Extra.getAt 14 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
                 floatTuple : Int -> ( String, List Float )
                 floatTuple num =
                     ( List.Extra.getAt num headTailTranspData |> Maybe.withDefault [] |> List.head |> Maybe.withDefault ""
@@ -731,6 +881,15 @@ dataHandling model =
                         "Age" ->
                             floatTuple 1
 
+                        "Gender" ->
+                            floatTuple 2
+
+                        "Bedtime" ->
+                            floatTuple 3
+
+                        "Wakeup time" ->
+                            floatTuple 4
+
                         "Sleep duration" ->
                             floatTuple 5
 
@@ -755,6 +914,9 @@ dataHandling model =
                         "Alcohol consumption" ->
                             floatTuple 12
 
+                        "Smoking status" ->
+                            floatTuple 13
+
                         "Exercise frequency" ->
                             floatTuple 14
 
@@ -768,30 +930,27 @@ dataHandling model =
                         xAxisHeadSP
                         yAxisHeadSP
 
-                filteredHeadList =
-                    headListData
-                        |> List.Extra.removeAt 13
-                        |> List.Extra.removeAt 4
-                        |> List.Extra.removeAt 3
-                        |> List.Extra.removeAt 2
-
-                filteredTailList =
-                    tailListData
-                        |> List.Extra.transpose
-                        |> List.Extra.removeAt 13
-                        |> List.Extra.removeAt 4
-                        |> List.Extra.removeAt 3
-                        |> List.Extra.removeAt 2
-                        |> List.Extra.transpose
-
+                -- filteredHeadList =
+                --     headListData
+                --         |> List.Extra.removeAt 13
+                --         |> List.Extra.removeAt 4
+                --         |> List.Extra.removeAt 3
+                --         |> List.Extra.removeAt 2
+                -- filteredTailList =
+                --     tailListData
+                --         |> List.Extra.transpose
+                --         |> List.Extra.removeAt 13
+                --         |> List.Extra.removeAt 4
+                --         |> List.Extra.removeAt 3
+                --         |> List.Extra.removeAt 2
+                --         |> List.Extra.transpose
                 movedIndexHeadList =
-                    List.map (\num -> List.Extra.getAt num filteredHeadList |> Maybe.withDefault "") model.orderOfDimensions
+                    List.map (\num -> List.Extra.getAt num headListData |> Maybe.withDefault "") model.orderOfDimensions
 
                 movedIndexTailList =
                     List.map
                         (\num ->
-                            List.Extra.getAt num
-                                (filteredTailList |> List.Extra.transpose)
+                            List.Extra.getAt num filtTranspData
                                 |> Maybe.withDefault []
                         )
                         model.orderOfDimensions
@@ -819,11 +978,10 @@ dataHandling model =
                         , stick5HeadIP
                         ]
 
-                data =
-                    listListStringToString linesOfDataSet
-
-                filteredData =
-                    listListStringToString filteredEmptyValuesDataSet
+                -- data =
+                --     listListStringToString linesOfDataSet
+                -- filteredData =
+                --     listListStringToString filteredEmptyValuesDataSet
             in
             pre []
                 [ --     div [] [ text "Test" ]
@@ -880,6 +1038,12 @@ dataHandling model =
                         text ""
                     ]
 
+                -- , div [] [ text (String.join ", " smokingNo0Yes1List) ]
+                -- , div [] []
+                -- , div [] [ text <| String.fromInt <| List.length smokingNo0Yes1List ]
+                -- , div [] [ text (String.join "\n" <| List.map (\li -> String.join ", " li) filtTranspData) ]
+                -- , div [] [ text (filtTranspData |> List.map (List.length >> String.fromInt) |> String.join "\n") ]
+                -- , div [] [ text (String.join ", " <| List.map String.fromInt (List.Extra.initialize 5 (\el -> el * 10))) ]
                 -- , div[][text (degrees 60 |> String.fromFloat)]
                 -- , div[][text (cos (degrees 45) |> String.fromFloat)]
                 -- , div [] [ text (movedIndexHeadList |> String.join ", ") ]
@@ -904,6 +1068,37 @@ listListStringToString : List (List String) -> String
 listListStringToString listlist =
     List.map (\li -> String.join ", " li) listlist
         |> String.join "\n"
+
+
+adjustLabels : String -> String
+adjustLabels description =
+    case description of
+        "Age" ->
+            description ++ " (in years)"
+
+        "Gender" ->
+            description ++ " (0: men, 1: women)"
+
+        "Bedtime" ->
+            description ++ " (in hours)"
+
+        "Wakeup time" ->
+            description ++ " (in hours)"
+
+        "Sleep duration" ->
+            description ++ " (in hours)"
+
+        "Caffeine consumption" ->
+            description ++ " (in mg)"
+
+        "Alcohol consumption" ->
+            description ++ " (in oz)"
+
+        "Smoking status" ->
+            description ++ " (0: nonsmokers, 1: smokers)"
+
+        _ ->
+            description
 
 
 scatterplot : PointData -> List Int -> Svg Msg
@@ -954,17 +1149,27 @@ scatterplot pointData numOfStackedPointsList =
                 [ Axis.bottom [ Axis.tickCount tickCount ] xScale
                 , text_ [ fontFamily [ "sans-serif" ], fontSize fontSizeCaptionsInPx, x (w / 2), y 50 ]
                     [ text
-                        pointData.xDescription
+                        (adjustLabels pointData.xDescription)
                     ]
                 ]
 
             -- Y AXIS
             , g [ transform [ Translate xPlotPadding yPlotPadding ] ]
                 [ Axis.left [ Axis.tickCount tickCount ] yScale
-                , text_ [ fontFamily [ "sans-serif" ], fontSize fontSizeCaptionsInPx, x 0, y -30, textAnchor AnchorMiddle ]
-                    [ text
-                        pointData.yDescription
+                , text_
+                    [ fontFamily [ "sans-serif" ]
+                    , fontSize fontSizeCaptionsInPx
+                    , x
+                        (if pointData.yDescription == "Smoking status" then
+                            50
+
+                         else
+                            0
+                        )
+                    , y -30
+                    , textAnchor AnchorMiddle
                     ]
+                    [ text (adjustLabels pointData.yDescription) ]
                 ]
             ]
 
@@ -1091,7 +1296,7 @@ parallelCoodinatesPlot multiDimData =
             indexNumberList |> List.map (toFloat >> (\x -> x * gapBetweenVerticales))
 
         scaleList =
-            List.map (\indexNum -> scaleIndexNum pointValues indexNum) indexNumberList
+            List.map (\indexNum -> scaleIndexNum pointValues indexNum numberOfAttributes) indexNumberList
 
         transposedPointsList =
             pointValues |> List.Extra.transpose
@@ -1156,10 +1361,12 @@ parallelCoodinatesPlot multiDimData =
                 ]
     in
     svg
-        [ viewBox 0 0 (2 * w + xPlotPadding) (h + 2 * yPlotPadding)
+        [ TypedSvg.Attributes.style "background: white"
+        , viewBox 70 0 (2 * w + xPlotPadding) (h + 2 * yPlotPadding)
+
+        -- , viewBox 0 0 4600 (h + 2 * yPlotPadding)
         , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100
         , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
-        , TypedSvg.Attributes.style "background: white"
         ]
         [ style []
             [ text
@@ -1214,11 +1421,12 @@ listsToMultiDimData listOfPointVals nameOfDims =
     MultiDimData nameOfDims multiDimPointsList
 
 
-scaleIndexNum : List (List Float) -> Int -> ContinuousScale Float
-scaleIndexNum pointVals indexNum =
+scaleIndexNum : List (List Float) -> Int -> Int -> ContinuousScale Float
+scaleIndexNum pointVals indexNum numberOfAttr =
     List.Extra.transpose pointVals
         |> List.Extra.getAt indexNum
-        |> Maybe.withDefault [ 0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0 ]
+        |> Maybe.withDefault (List.map toFloat (List.Extra.initialize numberOfAttr (\el -> el * 10)))
+        -- [ 0.0, 10.0, 20.0, 30.0,... ]
         |> Statistics.extent
         |> Maybe.withDefault ( 100.0, 200.0 )
         |> Scale.linear ( h, 0 )
