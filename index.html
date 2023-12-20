@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Report3</title>
+  <title>Sleep_efficiency_visualisation</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5370,8 +5370,8 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
-var $author$project$Report3$Loading = {$: 'Loading'};
-var $author$project$Report3$GotText = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Loading = {$: 'Loading'};
+var $author$project$Sleep_efficiency_visualisation$GotText = function (a) {
 	return {$: 'GotText', a: a};
 };
 var $elm$http$Http$BadStatus_ = F2(
@@ -6153,15 +6153,15 @@ var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
 		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Report3$getText = $elm$http$Http$get(
+var $author$project$Sleep_efficiency_visualisation$getText = $elm$http$Http$get(
 	{
-		expect: $elm$http$Http$expectString($author$project$Report3$GotText),
+		expect: $elm$http$Http$expectString($author$project$Sleep_efficiency_visualisation$GotText),
 		url: 'https://clemensweisse.github.io/' + 'Sleep_Efficiency.csv'
 	});
-var $author$project$Report3$init = function (_v0) {
+var $author$project$Sleep_efficiency_visualisation$init = function (_v0) {
 	return _Utils_Tuple2(
 		{
-			data: $author$project$Report3$Loading,
+			data: $author$project$Sleep_efficiency_visualisation$Loading,
 			orderOfDimensions: _List_fromArray(
 				[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]),
 			selectedStick1IconsPlot: 'Sleep duration',
@@ -6177,15 +6177,15 @@ var $author$project$Report3$init = function (_v0) {
 			showParallelCoordinates: false,
 			showScatterPlot: true
 		},
-		$author$project$Report3$getText);
+		$author$project$Sleep_efficiency_visualisation$getText);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Report3$subscriptions = function (model) {
+var $author$project$Sleep_efficiency_visualisation$subscriptions = function (model) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Report3$Failure = {$: 'Failure'};
-var $author$project$Report3$Success = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Failure = {$: 'Failure'};
+var $author$project$Sleep_efficiency_visualisation$Success = function (a) {
 	return {$: 'Success', a: a};
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
@@ -6410,7 +6410,7 @@ var $elm_community$list_extra$List$Extra$swapAt = F3(
 			}
 		}
 	});
-var $author$project$Report3$update = F2(
+var $author$project$Sleep_efficiency_visualisation$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'GotText':
@@ -6421,14 +6421,14 @@ var $author$project$Report3$update = F2(
 						_Utils_update(
 							model,
 							{
-								data: $author$project$Report3$Success(fullText)
+								data: $author$project$Sleep_efficiency_visualisation$Success(fullText)
 							}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{data: $author$project$Report3$Failure}),
+							{data: $author$project$Sleep_efficiency_visualisation$Failure}),
 						$elm$core$Platform$Cmd$none);
 				}
 			case 'XAxisScatterPlotSelected':
@@ -6540,34 +6540,34 @@ var $author$project$Report3$update = F2(
 					$elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$Report3$Icons = {$: 'Icons'};
-var $author$project$Report3$ParallelCoordinates = {$: 'ParallelCoordinates'};
-var $author$project$Report3$ScatterPlot = {$: 'ScatterPlot'};
-var $author$project$Report3$Stick1IconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Icons = {$: 'Icons'};
+var $author$project$Sleep_efficiency_visualisation$ParallelCoordinates = {$: 'ParallelCoordinates'};
+var $author$project$Sleep_efficiency_visualisation$ScatterPlot = {$: 'ScatterPlot'};
+var $author$project$Sleep_efficiency_visualisation$Stick1IconsPlotSelected = function (a) {
 	return {$: 'Stick1IconsPlotSelected', a: a};
 };
-var $author$project$Report3$Stick2IconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Stick2IconsPlotSelected = function (a) {
 	return {$: 'Stick2IconsPlotSelected', a: a};
 };
-var $author$project$Report3$Stick3IconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Stick3IconsPlotSelected = function (a) {
 	return {$: 'Stick3IconsPlotSelected', a: a};
 };
-var $author$project$Report3$Stick4IconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Stick4IconsPlotSelected = function (a) {
 	return {$: 'Stick4IconsPlotSelected', a: a};
 };
-var $author$project$Report3$Stick5IconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$Stick5IconsPlotSelected = function (a) {
 	return {$: 'Stick5IconsPlotSelected', a: a};
 };
-var $author$project$Report3$XAxisIconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$XAxisIconsPlotSelected = function (a) {
 	return {$: 'XAxisIconsPlotSelected', a: a};
 };
-var $author$project$Report3$XAxisScatterPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$XAxisScatterPlotSelected = function (a) {
 	return {$: 'XAxisScatterPlotSelected', a: a};
 };
-var $author$project$Report3$YAxisIconsPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$YAxisIconsPlotSelected = function (a) {
 	return {$: 'YAxisIconsPlotSelected', a: a};
 };
-var $author$project$Report3$YAxisScatterPlotSelected = function (a) {
+var $author$project$Sleep_efficiency_visualisation$YAxisScatterPlotSelected = function (a) {
 	return {$: 'YAxisScatterPlotSelected', a: a};
 };
 var $elm$html$Html$br = _VirtualDom_node('br');
@@ -6728,7 +6728,7 @@ var $lovasoa$elm_csv$Csv$splitWith = F2(
 			values);
 	});
 var $lovasoa$elm_csv$Csv$split = $lovasoa$elm_csv$Csv$splitWith(',');
-var $author$project$Report3$csvString_to_data = function (csvRaw) {
+var $author$project$Sleep_efficiency_visualisation$csvString_to_data = function (csvRaw) {
 	return $lovasoa$elm_csv$Csv$split(csvRaw);
 };
 var $elm$html$Html$div = _VirtualDom_node('div');
@@ -6738,11 +6738,11 @@ var $elm_community$list_extra$List$Extra$getAt = F2(
 		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
 			A2($elm$core$List$drop, idx, xs));
 	});
-var $author$project$Report3$MultiDimData = F2(
+var $author$project$Sleep_efficiency_visualisation$MultiDimData = F2(
 	function (dimDescription, data) {
 		return {data: data, dimDescription: dimDescription};
 	});
-var $author$project$Report3$MultiDimPoint = F2(
+var $author$project$Sleep_efficiency_visualisation$MultiDimPoint = F2(
 	function (pointName, value) {
 		return {pointName: pointName, value: value};
 	});
@@ -6785,25 +6785,47 @@ var $elm_community$list_extra$List$Extra$transpose = function (listOfLists) {
 			_List_Nil),
 		listOfLists);
 };
-var $author$project$Report3$iconListsToMultiDimData = F2(
+var $author$project$Sleep_efficiency_visualisation$iconListsToMultiDimData = F2(
 	function (listOfDims, nameOfDims) {
 		var listOfPointVals = $elm_community$list_extra$List$Extra$transpose(listOfDims);
 		var multiDimPointsList = A2(
 			$elm$core$List$map,
 			function (li) {
-				return A2($author$project$Report3$MultiDimPoint, '', li);
+				return A2($author$project$Sleep_efficiency_visualisation$MultiDimPoint, '', li);
 			},
 			listOfPointVals);
-		return A2($author$project$Report3$MultiDimData, nameOfDims, multiDimPointsList);
+		return A2($author$project$Sleep_efficiency_visualisation$MultiDimData, nameOfDims, multiDimPointsList);
 	});
 var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
-var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
-	return {$: 'Percent', a: a};
+var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
+	return {$: 'Px', a: a};
 };
 var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
 	function (a, b) {
 		return {$: 'Translate', a: a, b: b};
 	});
+var $author$project$Sleep_efficiency_visualisation$adjustLabels = function (description) {
+	switch (description) {
+		case 'Age':
+			return description + ' (in years)';
+		case 'Gender':
+			return description + ' (0: men, 1: women)';
+		case 'Bedtime':
+			return description + ' (in hours)';
+		case 'Wakeup time':
+			return description + ' (in hours)';
+		case 'Sleep duration':
+			return description + ' (in hours)';
+		case 'Caffeine consumption':
+			return description + ' (in mg)';
+		case 'Alcohol consumption':
+			return description + ' (in oz)';
+		case 'Smoking status':
+			return description + ' (0: nonsmokers, 1: smokers)';
+		default:
+			return description;
+	}
+};
 var $gampleman$elm_visualization$Scale$Scale = function (a) {
 	return {$: 'Scale', a: a};
 };
@@ -7183,41 +7205,41 @@ var $gampleman$elm_visualization$Statistics$extentBy = F2(
 		}
 	});
 var $gampleman$elm_visualization$Statistics$extent = $gampleman$elm_visualization$Statistics$extentBy($elm$core$Basics$identity);
-var $author$project$Report3$wideAngleExtent = function (values) {
+var $author$project$Sleep_efficiency_visualisation$wideAngleExtent = function (values) {
 	return A2(
 		$elm$core$Maybe$withDefault,
 		_Utils_Tuple2(-0.5, 0.5),
 		$gampleman$elm_visualization$Statistics$extent(values));
 };
-var $author$project$Report3$angleScale = function (values) {
+var $author$project$Sleep_efficiency_visualisation$angleScale = function (values) {
 	return A2(
 		$gampleman$elm_visualization$Scale$linear,
 		_Utils_Tuple2((-0.25) * $elm$core$Basics$pi, (-0.75) * $elm$core$Basics$pi),
-		$author$project$Report3$wideAngleExtent(values));
+		$author$project$Sleep_efficiency_visualisation$wideAngleExtent(values));
 };
-var $author$project$Report3$angleScaleDownLeft = function (values) {
+var $author$project$Sleep_efficiency_visualisation$angleScaleDownLeft = function (values) {
 	return A2(
 		$gampleman$elm_visualization$Scale$linear,
 		_Utils_Tuple2($elm$core$Basics$pi, 0.5 * $elm$core$Basics$pi),
-		$author$project$Report3$wideAngleExtent(values));
+		$author$project$Sleep_efficiency_visualisation$wideAngleExtent(values));
 };
-var $author$project$Report3$angleScaleDownRight = function (values) {
+var $author$project$Sleep_efficiency_visualisation$angleScaleDownRight = function (values) {
 	return A2(
 		$gampleman$elm_visualization$Scale$linear,
 		_Utils_Tuple2(0.5 * $elm$core$Basics$pi, 0),
-		$author$project$Report3$wideAngleExtent(values));
+		$author$project$Sleep_efficiency_visualisation$wideAngleExtent(values));
 };
-var $author$project$Report3$angleScaleUpLeft = function (values) {
+var $author$project$Sleep_efficiency_visualisation$angleScaleUpLeft = function (values) {
 	return A2(
 		$gampleman$elm_visualization$Scale$linear,
 		_Utils_Tuple2((-0.5) * $elm$core$Basics$pi, -$elm$core$Basics$pi),
-		$author$project$Report3$wideAngleExtent(values));
+		$author$project$Sleep_efficiency_visualisation$wideAngleExtent(values));
 };
-var $author$project$Report3$angleScaleUpRight = function (values) {
+var $author$project$Sleep_efficiency_visualisation$angleScaleUpRight = function (values) {
 	return A2(
 		$gampleman$elm_visualization$Scale$linear,
 		_Utils_Tuple2(0, (-0.5) * $elm$core$Basics$pi),
-		$author$project$Report3$wideAngleExtent(values));
+		$author$project$Sleep_efficiency_visualisation$wideAngleExtent(values));
 };
 var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
 var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
@@ -7513,10 +7535,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$fontSize = function (length) {
 		'font-size',
 		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
 };
-var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
-	return {$: 'Px', a: a};
-};
-var $author$project$Report3$fontSizeHoverInPx = $elm_community$typed_svg$TypedSvg$Types$Px(18);
+var $author$project$Sleep_efficiency_visualisation$fontSizeHoverInPx = $elm_community$typed_svg$TypedSvg$Types$Px(18);
 var $elm$virtual_dom$VirtualDom$nodeNS = function (tag) {
 	return _VirtualDom_nodeNS(
 		_VirtualDom_noScript(tag));
@@ -7530,7 +7549,7 @@ var $avh4$elm_color$Color$green = A4($avh4$elm_color$Color$RgbaSpace, 115 / 255,
 var $avh4$elm_color$Color$orange = A4($avh4$elm_color$Color$RgbaSpace, 245 / 255, 121 / 255, 0 / 255, 1.0);
 var $avh4$elm_color$Color$purple = A4($avh4$elm_color$Color$RgbaSpace, 117 / 255, 80 / 255, 123 / 255, 1.0);
 var $avh4$elm_color$Color$red = A4($avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
-var $author$project$Report3$stickLimbColors = _List_fromArray(
+var $author$project$Sleep_efficiency_visualisation$stickLimbColors = _List_fromArray(
 	[$avh4$elm_color$Color$green, $avh4$elm_color$Color$orange, $avh4$elm_color$Color$purple, $avh4$elm_color$Color$red, $avh4$elm_color$Color$darkYellow]);
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
@@ -7597,7 +7616,37 @@ var $elm_community$typed_svg$TypedSvg$Attributes$strokeWidth = function (length)
 		'stroke-width',
 		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
 };
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
+	switch (anchorAlignment.$) {
+		case 'AnchorInherit':
+			return 'inherit';
+		case 'AnchorStart':
+			return 'start';
+		case 'AnchorMiddle':
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'text-anchor',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
+};
+var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
 var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
+var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'x',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$x(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
 var $elm_community$typed_svg$TypedSvg$Attributes$x1 = function (position) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -7616,6 +7665,16 @@ var $elm_community$typed_svg$TypedSvg$Attributes$x2 = function (position) {
 };
 var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x2 = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$x2(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'y',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$y(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
 var $elm_community$typed_svg$TypedSvg$Attributes$y1 = function (position) {
@@ -7638,8 +7697,9 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y2 = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$y2(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
-var $author$project$Report3$drawStickFigure = F2(
-	function (scaleList, multiDimPoint) {
+var $author$project$Sleep_efficiency_visualisation$drawStickFigure = F3(
+	function (scaleList, dimDescription, multiDimPoint) {
+		var numberOfDims = $elm$core$List$length(dimDescription);
 		var length = 20;
 		var convertScale = function (num) {
 			return A2(
@@ -7658,6 +7718,28 @@ var $author$project$Report3$drawStickFigure = F2(
 		};
 		var x1Pos = convertScale(0);
 		var y1Pos = convertScale(1);
+		var stickFigureText = function (num) {
+			return A2(
+				$elm_community$typed_svg$TypedSvg$text_,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(x1Pos),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(y1Pos - (40 + (((numberOfDims - 1) - num) * 20))),
+						$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						A2(
+							$elm$core$Maybe$withDefault,
+							'',
+							A2($elm_community$list_extra$List$Extra$getAt, num, dimDescription)) + (': ' + ($elm$core$String$fromFloat(
+							A2(
+								$elm$core$Maybe$withDefault,
+								0.0,
+								A2($elm_community$list_extra$List$Extra$getAt, num, multiDimPoint.value))) + ((!num) ? '' : ', '))))
+					]));
+		};
 		var angle5 = convertScale(6);
 		var x6Pos = x1Pos + (length * $elm$core$Basics$cos(angle5));
 		var y6Pos = y1Pos + (length * $elm$core$Basics$sin(angle5));
@@ -7680,7 +7762,7 @@ var $author$project$Report3$drawStickFigure = F2(
 					$elm_community$typed_svg$TypedSvg$Attributes$class(
 					_List_fromArray(
 						['stick'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeHoverInPx),
+					$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeHoverInPx),
 					$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 					_List_fromArray(
 						['sans-serif'])),
@@ -7702,7 +7784,7 @@ var $author$project$Report3$drawStickFigure = F2(
 								A2(
 									$elm$core$Maybe$withDefault,
 									$avh4$elm_color$Color$black,
-									A2($elm_community$list_extra$List$Extra$getAt, 0, $author$project$Report3$stickLimbColors))))
+									A2($elm_community$list_extra$List$Extra$getAt, 0, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 						]),
 					_List_Nil),
 					A2(
@@ -7718,7 +7800,7 @@ var $author$project$Report3$drawStickFigure = F2(
 								A2(
 									$elm$core$Maybe$withDefault,
 									$avh4$elm_color$Color$black,
-									A2($elm_community$list_extra$List$Extra$getAt, 1, $author$project$Report3$stickLimbColors))))
+									A2($elm_community$list_extra$List$Extra$getAt, 1, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 						]),
 					_List_Nil),
 					A2(
@@ -7734,7 +7816,7 @@ var $author$project$Report3$drawStickFigure = F2(
 								A2(
 									$elm$core$Maybe$withDefault,
 									$avh4$elm_color$Color$black,
-									A2($elm_community$list_extra$List$Extra$getAt, 2, $author$project$Report3$stickLimbColors))))
+									A2($elm_community$list_extra$List$Extra$getAt, 2, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 						]),
 					_List_Nil),
 					A2(
@@ -7750,7 +7832,7 @@ var $author$project$Report3$drawStickFigure = F2(
 								A2(
 									$elm$core$Maybe$withDefault,
 									$avh4$elm_color$Color$black,
-									A2($elm_community$list_extra$List$Extra$getAt, 3, $author$project$Report3$stickLimbColors))))
+									A2($elm_community$list_extra$List$Extra$getAt, 3, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 						]),
 					_List_Nil),
 					A2(
@@ -7766,13 +7848,20 @@ var $author$project$Report3$drawStickFigure = F2(
 								A2(
 									$elm$core$Maybe$withDefault,
 									$avh4$elm_color$Color$black,
-									A2($elm_community$list_extra$List$Extra$getAt, 4, $author$project$Report3$stickLimbColors))))
+									A2($elm_community$list_extra$List$Extra$getAt, 4, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 						]),
-					_List_Nil)
+					_List_Nil),
+					stickFigureText(0),
+					stickFigureText(1),
+					stickFigureText(2),
+					stickFigureText(3),
+					stickFigureText(4),
+					stickFigureText(5),
+					stickFigureText(6)
 				]));
 	});
-var $author$project$Report3$fontSizeCaptionsInPx = $elm_community$typed_svg$TypedSvg$Types$Px(50);
-var $author$project$Report3$h = 900;
+var $author$project$Sleep_efficiency_visualisation$fontSizeCaptionsInPx = $elm_community$typed_svg$TypedSvg$Types$Px(50);
+var $author$project$Sleep_efficiency_visualisation$h = 900;
 var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -7811,32 +7900,12 @@ var $elm$html$Html$Events$onClick = function (msg) {
 };
 var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
 var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
-	switch (anchorAlignment.$) {
-		case 'AnchorInherit':
-			return 'inherit';
-		case 'AnchorStart':
-			return 'start';
-		case 'AnchorMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'text-anchor',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
-};
-var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
 var $gampleman$elm_visualization$Axis$TickCount = function (a) {
 	return {$: 'TickCount', a: a};
 };
 var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
-var $author$project$Report3$tickCount = 10;
+var $author$project$Sleep_efficiency_visualisation$tickCount = 10;
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString = function (xform) {
 	var tr = F2(
 		function (name, args) {
@@ -7929,36 +7998,16 @@ var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
 					_List_fromArray(
 						[minX, minY, vWidth, vHeight]))));
 	});
-var $author$project$Report3$w = 2150;
+var $author$project$Sleep_efficiency_visualisation$w = 2150;
 var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
 		'width',
 		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Report3$xPlotPadding = 200;
-var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Report3$yPlotPadding = 100;
-var $author$project$Report3$iconsPlot = function (multiDimData) {
+var $author$project$Sleep_efficiency_visualisation$xPlotPadding = 200;
+var $author$project$Sleep_efficiency_visualisation$yPlotPadding = 100;
+var $author$project$Sleep_efficiency_visualisation$iconsPlot = function (multiDimData) {
 	var data = multiDimData.data;
 	var getAllValsOfOneDim = function (num) {
 		return A2(
@@ -7976,19 +8025,19 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 						data))));
 	};
 	var stick1Values = getAllValsOfOneDim(2);
-	var stick1Scale = $author$project$Report3$angleScale(stick1Values);
+	var stick1Scale = $author$project$Sleep_efficiency_visualisation$angleScale(stick1Values);
 	var stick2Values = getAllValsOfOneDim(3);
-	var stick2Scale = $author$project$Report3$angleScaleUpLeft(stick2Values);
+	var stick2Scale = $author$project$Sleep_efficiency_visualisation$angleScaleUpLeft(stick2Values);
 	var stick3Values = getAllValsOfOneDim(4);
-	var stick3Scale = $author$project$Report3$angleScaleUpRight(stick3Values);
+	var stick3Scale = $author$project$Sleep_efficiency_visualisation$angleScaleUpRight(stick3Values);
 	var stick4Values = getAllValsOfOneDim(5);
-	var stick4Scale = $author$project$Report3$angleScaleDownRight(stick4Values);
+	var stick4Scale = $author$project$Sleep_efficiency_visualisation$angleScaleDownRight(stick4Values);
 	var stick5Values = getAllValsOfOneDim(6);
-	var stick5Scale = $author$project$Report3$angleScaleDownLeft(stick5Values);
+	var stick5Scale = $author$project$Sleep_efficiency_visualisation$angleScaleDownLeft(stick5Values);
 	var xValues = getAllValsOfOneDim(0);
 	var xScale = A2(
 		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2(0, $author$project$Report3$w),
+		_Utils_Tuple2(0, $author$project$Sleep_efficiency_visualisation$w),
 		A2(
 			$elm$core$Maybe$withDefault,
 			_Utils_Tuple2(100.0, 200.0),
@@ -7996,7 +8045,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 	var yValues = getAllValsOfOneDim(1);
 	var yScale = A2(
 		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2($author$project$Report3$h, 0),
+		_Utils_Tuple2($author$project$Sleep_efficiency_visualisation$h, 0),
 		A2(
 			$elm$core$Maybe$withDefault,
 			_Utils_Tuple2(100.0, 200.0),
@@ -8007,11 +8056,11 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 		$elm_community$typed_svg$TypedSvg$svg,
 		_List_fromArray(
 			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Report3$w + (4 * $author$project$Report3$xPlotPadding), $author$project$Report3$h + (4 * $author$project$Report3$yPlotPadding)),
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Sleep_efficiency_visualisation$w + (4 * $author$project$Sleep_efficiency_visualisation$xPlotPadding), $author$project$Sleep_efficiency_visualisation$h + (4 * ($author$project$Sleep_efficiency_visualisation$yPlotPadding + 100))),
 				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+				$elm_community$typed_svg$TypedSvg$Types$Px(2500)),
 				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+				$elm_community$typed_svg$TypedSvg$Types$Px(1440))
 			]),
 		_List_fromArray(
 			[
@@ -8020,7 +8069,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Core$text('\r\n             .stick:hover { stroke-width: 1.5mm; }\r\n             .axis text {font-size: 23px; display: inline;}\r\n           ')
+						$elm_community$typed_svg$TypedSvg$Core$text('\r\n            .stick text { display: none; }\r\n            .stick:hover text { display: inline; }\r\n            .axis g text {font-size: 23px; display: inline;}\r\n            .stick:hover { stroke-width: 1.5mm; }\r\n            .axis text {font-size: 23px; display: inline;}\r\n           ')
 					])),
 				A2(
 				$elm_community$typed_svg$TypedSvg$g,
@@ -8039,7 +8088,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 								$elm_community$typed_svg$TypedSvg$Attributes$transform(
 								_List_fromArray(
 									[
-										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$h + $author$project$Report3$yPlotPadding)
+										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$h + ($author$project$Sleep_efficiency_visualisation$yPlotPadding + 100))
 									]))
 							]),
 						_List_fromArray(
@@ -8048,7 +8097,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 								$gampleman$elm_visualization$Axis$bottom,
 								_List_fromArray(
 									[
-										$gampleman$elm_visualization$Axis$tickCount($author$project$Report3$tickCount)
+										$gampleman$elm_visualization$Axis$tickCount($author$project$Sleep_efficiency_visualisation$tickCount)
 									]),
 								xScale),
 								A2(
@@ -8058,17 +8107,18 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 										$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 										_List_fromArray(
 											['sans-serif'])),
-										$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeCaptionsInPx),
-										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Report3$w / 2),
+										$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeCaptionsInPx),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Sleep_efficiency_visualisation$w / 2),
 										$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(50)
 									]),
 								_List_fromArray(
 									[
 										$elm$html$Html$text(
-										A2(
-											$elm$core$Maybe$withDefault,
-											'',
-											A2($elm_community$list_extra$List$Extra$getAt, 0, multiDimData.dimDescription)))
+										$author$project$Sleep_efficiency_visualisation$adjustLabels(
+											A2(
+												$elm$core$Maybe$withDefault,
+												'',
+												A2($elm_community$list_extra$List$Extra$getAt, 0, multiDimData.dimDescription))))
 									]))
 							])),
 						A2(
@@ -8078,7 +8128,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 								$elm_community$typed_svg$TypedSvg$Attributes$transform(
 								_List_fromArray(
 									[
-										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$yPlotPadding)
+										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$yPlotPadding + 100)
 									]))
 							]),
 						_List_fromArray(
@@ -8087,7 +8137,7 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 								$gampleman$elm_visualization$Axis$left,
 								_List_fromArray(
 									[
-										$gampleman$elm_visualization$Axis$tickCount($author$project$Report3$tickCount)
+										$gampleman$elm_visualization$Axis$tickCount($author$project$Sleep_efficiency_visualisation$tickCount)
 									]),
 								yScale),
 								A2(
@@ -8097,18 +8147,23 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 										$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 										_List_fromArray(
 											['sans-serif'])),
-										$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeCaptionsInPx),
-										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+										$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeCaptionsInPx),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+										(A2(
+											$elm$core$Maybe$withDefault,
+											'',
+											A2($elm_community$list_extra$List$Extra$getAt, 1, multiDimData.dimDescription)) === 'Smoking status') ? 50 : 0),
 										$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-30),
 										$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
 									]),
 								_List_fromArray(
 									[
 										$elm$html$Html$text(
-										A2(
-											$elm$core$Maybe$withDefault,
-											'',
-											A2($elm_community$list_extra$List$Extra$getAt, 1, multiDimData.dimDescription)))
+										$author$project$Sleep_efficiency_visualisation$adjustLabels(
+											A2(
+												$elm$core$Maybe$withDefault,
+												'',
+												A2($elm_community$list_extra$List$Extra$getAt, 1, multiDimData.dimDescription))))
 									]))
 							]))
 					])),
@@ -8119,35 +8174,35 @@ var $author$project$Report3$iconsPlot = function (multiDimData) {
 						$elm_community$typed_svg$TypedSvg$Attributes$transform(
 						_List_fromArray(
 							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$yPlotPadding)
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$yPlotPadding + 100)
 							])),
-						$elm$html$Html$Events$onClick($author$project$Report3$ParallelCoordinates)
+						$elm$html$Html$Events$onClick($author$project$Sleep_efficiency_visualisation$ParallelCoordinates)
 					]),
 				A2(
 					$elm$core$List$map,
-					$author$project$Report3$drawStickFigure(scaleList),
+					A2($author$project$Sleep_efficiency_visualisation$drawStickFigure, scaleList, multiDimData.dimDescription),
 					data))
 			]));
 };
-var $author$project$Report3$listsToMultiDimData = F2(
+var $author$project$Sleep_efficiency_visualisation$listsToMultiDimData = F2(
 	function (listOfPointVals, nameOfDims) {
 		var multiDimPointsList = A2(
 			$elm$core$List$map,
 			function (li) {
-				return A2($author$project$Report3$MultiDimPoint, '', li);
+				return A2($author$project$Sleep_efficiency_visualisation$MultiDimPoint, '', li);
 			},
 			listOfPointVals);
-		return A2($author$project$Report3$MultiDimData, nameOfDims, multiDimPointsList);
+		return A2($author$project$Sleep_efficiency_visualisation$MultiDimData, nameOfDims, multiDimPointsList);
 	});
-var $author$project$Report3$Point = F3(
+var $author$project$Sleep_efficiency_visualisation$Point = F3(
 	function (pointName, x, y) {
 		return {pointName: pointName, x: x, y: y};
 	});
-var $author$project$Report3$PointData = F3(
+var $author$project$Sleep_efficiency_visualisation$PointData = F3(
 	function (xDescription, yDescription, data) {
 		return {data: data, xDescription: xDescription, yDescription: yDescription};
 	});
-var $author$project$Report3$stacking = F2(
+var $author$project$Sleep_efficiency_visualisation$stacking = F2(
 	function (list, dict) {
 		if (!list.b) {
 			return $elm$core$Dict$toList(dict);
@@ -8164,12 +8219,12 @@ var $author$project$Report3$stacking = F2(
 				}
 			}();
 			return A2(
-				$author$project$Report3$stacking,
+				$author$project$Sleep_efficiency_visualisation$stacking,
 				rest,
 				A3($elm$core$Dict$insert, first, count, dict));
 		}
 	});
-var $author$project$Report3$listsToPointData = F4(
+var $author$project$Sleep_efficiency_visualisation$listsToPointData = F4(
 	function (listX, listY, nameX, nameY) {
 		var xyTupleList = A3(
 			$elm$core$List$map2,
@@ -8179,13 +8234,13 @@ var $author$project$Report3$listsToPointData = F4(
 				}),
 			listX,
 			listY);
-		var stackedList = A2($author$project$Report3$stacking, xyTupleList, $elm$core$Dict$empty);
+		var stackedList = A2($author$project$Sleep_efficiency_visualisation$stacking, xyTupleList, $elm$core$Dict$empty);
 		var pointsList = A2(
 			$elm$core$List$map,
 			function (tup) {
 				return _Utils_Tuple2(
 					A3(
-						$author$project$Report3$Point,
+						$author$project$Sleep_efficiency_visualisation$Point,
 						'(' + (nameX + (': ' + ($elm$core$String$fromFloat(tup.a.a) + (', ' + (nameY + (': ' + ($elm$core$String$fromFloat(tup.a.b) + (') stacked Points: ' + $elm$core$String$fromInt(tup.b))))))))),
 						tup.a.a,
 						tup.a.b),
@@ -8194,18 +8249,18 @@ var $author$project$Report3$listsToPointData = F4(
 			stackedList);
 		return _Utils_Tuple2(
 			A3(
-				$author$project$Report3$PointData,
+				$author$project$Sleep_efficiency_visualisation$PointData,
 				nameX,
 				nameY,
 				A2($elm$core$List$map, $elm$core$Tuple$first, pointsList)),
 			A2($elm$core$List$map, $elm$core$Tuple$second, pointsList));
 	});
-var $author$project$Report3$ChangeDimensions = F2(
+var $author$project$Sleep_efficiency_visualisation$ChangeDimensions = F2(
 	function (a, b) {
 		return {$: 'ChangeDimensions', a: a, b: b};
 	});
 var $elm_community$typed_svg$TypedSvg$Types$PaintNone = {$: 'PaintNone'};
-var $author$project$Report3$ScatterPlotWithXY = F2(
+var $author$project$Sleep_efficiency_visualisation$ScatterPlotWithXY = F2(
 	function (a, b) {
 		return {$: 'ScatterPlotWithXY', a: a, b: b};
 	});
@@ -8843,8 +8898,8 @@ var $elm_community$typed_svg$TypedSvg$Attributes$fill = A2(
 	$elm$core$Basics$composeL,
 	$elm_community$typed_svg$TypedSvg$Core$attribute('fill'),
 	$elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString);
-var $author$project$Report3$fontSizeParallelCoordInPx = $elm_community$typed_svg$TypedSvg$Types$Px(25);
-var $author$project$Report3$gapBetweenVerticales = 300;
+var $author$project$Sleep_efficiency_visualisation$fontSizeParallelCoordInPx = $elm_community$typed_svg$TypedSvg$Types$Px(25);
+var $author$project$Sleep_efficiency_visualisation$gapBetweenVerticales = 300;
 var $gampleman$elm_visualization$Shape$Generators$line = F2(
 	function (curve, data) {
 		var makeCurves = F2(
@@ -8956,11 +9011,11 @@ var $elm_community$list_extra$List$Extra$initialize = F2(
 			});
 		return A2(step, n - 1, _List_Nil);
 	});
-var $author$project$Report3$scaleIndexNum = F3(
+var $author$project$Sleep_efficiency_visualisation$scaleIndexNum = F3(
 	function (pointVals, indexNum, numberOfAttr) {
 		return A2(
 			$gampleman$elm_visualization$Scale$linear,
-			_Utils_Tuple2($author$project$Report3$h, 0),
+			_Utils_Tuple2($author$project$Sleep_efficiency_visualisation$h, 0),
 			A2(
 				$elm$core$Maybe$withDefault,
 				_Utils_Tuple2(100.0, 200.0),
@@ -8984,7 +9039,7 @@ var $author$project$Report3$scaleIndexNum = F3(
 var $elm_community$typed_svg$TypedSvg$Attributes$style = function (value) {
 	return A2($elm_community$typed_svg$TypedSvg$Core$attribute, 'style', value);
 };
-var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
+var $author$project$Sleep_efficiency_visualisation$parallelCoodinatesPlot = function (multiDimData) {
 	var multiDimPoints = multiDimData.data;
 	var pointValues = A2(
 		$elm$core$List$map,
@@ -9016,7 +9071,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 	var scaleList = A2(
 		$elm$core$List$map,
 		function (indexNum) {
-			return A3($author$project$Report3$scaleIndexNum, pointValues, indexNum, numberOfAttributes);
+			return A3($author$project$Sleep_efficiency_visualisation$scaleIndexNum, pointValues, indexNum, numberOfAttributes);
 		},
 		indexNumberList);
 	var yTransposedList = A3(
@@ -9039,7 +9094,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 			$elm$core$Basics$composeR,
 			$elm$core$Basics$toFloat,
 			function (x) {
-				return x * $author$project$Report3$gapBetweenVerticales;
+				return x * $author$project$Sleep_efficiency_visualisation$gapBetweenVerticales;
 			}),
 		indexNumberList);
 	var paths = A2(
@@ -9065,7 +9120,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 						$elm_community$typed_svg$TypedSvg$Attributes$transform(
 						_List_fromArray(
 							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$yPlotPadding)
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$yPlotPadding)
 							]))
 					]),
 				_List_fromArray(
@@ -9093,7 +9148,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 			$elm$core$Maybe$withDefault,
 			A2(
 				$gampleman$elm_visualization$Scale$linear,
-				_Utils_Tuple2($author$project$Report3$h, 0),
+				_Utils_Tuple2($author$project$Sleep_efficiency_visualisation$h, 0),
 				_Utils_Tuple2(100.0, 200.0)),
 			A2($elm_community$list_extra$List$Extra$getAt, num, scaleList));
 		return A2(
@@ -9103,7 +9158,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 					$elm_community$typed_svg$TypedSvg$Attributes$transform(
 					_List_fromArray(
 						[
-							A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding + xValOfVerticalLine, $author$project$Report3$yPlotPadding)
+							A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding + xValOfVerticalLine, $author$project$Sleep_efficiency_visualisation$yPlotPadding)
 						]))
 				]),
 			_List_fromArray(
@@ -9112,7 +9167,7 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 					$gampleman$elm_visualization$Axis$left,
 					_List_fromArray(
 						[
-							$gampleman$elm_visualization$Axis$tickCount($author$project$Report3$tickCount)
+							$gampleman$elm_visualization$Axis$tickCount($author$project$Sleep_efficiency_visualisation$tickCount)
 						]),
 					scaleVal),
 					A2(
@@ -9122,13 +9177,13 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 							$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 							_List_fromArray(
 								['sans-serif'])),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeParallelCoordInPx),
+							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeParallelCoordInPx),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(-40),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-60),
 							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
 							$elm$html$Html$Events$onClick(
 							A2(
-								$author$project$Report3$ChangeDimensions,
+								$author$project$Sleep_efficiency_visualisation$ChangeDimensions,
 								A2($elm$core$Basics$modBy, numberOfAttributes, num - 1),
 								num))
 						]),
@@ -9145,13 +9200,13 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 							$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 							_List_fromArray(
 								['sans-serif'])),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeParallelCoordInPx),
+							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeParallelCoordInPx),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-30),
 							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
 							$elm$html$Html$Events$onClick(
 							A2(
-								$author$project$Report3$ScatterPlotWithXY,
+								$author$project$Sleep_efficiency_visualisation$ScatterPlotWithXY,
 								A2(
 									$elm$core$Maybe$withDefault,
 									'Age',
@@ -9179,13 +9234,13 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 							$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 							_List_fromArray(
 								['sans-serif'])),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeParallelCoordInPx),
+							$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeParallelCoordInPx),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(40),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-60),
 							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
 							$elm$html$Html$Events$onClick(
 							A2(
-								$author$project$Report3$ChangeDimensions,
+								$author$project$Sleep_efficiency_visualisation$ChangeDimensions,
 								num,
 								A2($elm$core$Basics$modBy, numberOfAttributes, num + 1)))
 						]),
@@ -9202,11 +9257,11 @@ var $author$project$Report3$parallelCoodinatesPlot = function (multiDimData) {
 		_List_fromArray(
 			[
 				$elm_community$typed_svg$TypedSvg$Attributes$style('background: white'),
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 70, 0, (2 * $author$project$Report3$w) + $author$project$Report3$xPlotPadding, $author$project$Report3$h + (2 * $author$project$Report3$yPlotPadding)),
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 70, 0, (2 * $author$project$Sleep_efficiency_visualisation$w) + $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$h + (2 * $author$project$Sleep_efficiency_visualisation$yPlotPadding)),
 				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+				$elm_community$typed_svg$TypedSvg$Types$Px(2550)),
 				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+				$elm_community$typed_svg$TypedSvg$Types$Px(650))
 			]),
 		_List_fromArray(
 			[
@@ -9242,29 +9297,7 @@ var $elm_community$typed_svg$TypedSvg$Types$Align = F2(
 	});
 var $elm_community$typed_svg$TypedSvg$Types$ScaleMin = {$: 'ScaleMin'};
 var $elm_community$typed_svg$TypedSvg$Types$Slice = {$: 'Slice'};
-var $author$project$Report3$adjustLabels = function (description) {
-	switch (description) {
-		case 'Age':
-			return description + ' (in years)';
-		case 'Gender':
-			return description + ' (0: men, 1: women)';
-		case 'Bedtime':
-			return description + ' (in hours)';
-		case 'Wakeup time':
-			return description + ' (in hours)';
-		case 'Sleep duration':
-			return description + ' (in hours)';
-		case 'Caffeine consumption':
-			return description + ' (in mg)';
-		case 'Alcohol consumption':
-			return description + ' (in oz)';
-		case 'Smoking status':
-			return description + ' (0: nonsmokers, 1: smokers)';
-		default:
-			return description;
-	}
-};
-var $author$project$Report3$IconsWithXY = F2(
+var $author$project$Sleep_efficiency_visualisation$IconsWithXY = F2(
 	function (a, b) {
 		return {$: 'IconsWithXY', a: a, b: b};
 	});
@@ -9301,7 +9334,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
 };
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $author$project$Report3$pointFunc = F6(
+var $author$project$Sleep_efficiency_visualisation$pointFunc = F6(
 	function (scaleX, scaleY, xDescr, yDescr, xyPoint, numOfStackedPoints) {
 		return A2(
 			$elm_community$typed_svg$TypedSvg$g,
@@ -9310,7 +9343,7 @@ var $author$project$Report3$pointFunc = F6(
 					$elm_community$typed_svg$TypedSvg$Attributes$class(
 					_List_fromArray(
 						['point'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeHoverInPx),
+					$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeHoverInPx),
 					$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 					_List_fromArray(
 						['sans-serif']))
@@ -9332,7 +9365,7 @@ var $author$project$Report3$pointFunc = F6(
 							'fill',
 							'rgba(255, ' + ($elm$core$String$fromInt(255 - (numOfStackedPoints * 5)) + (', ' + ($elm$core$String$fromInt(255 - (numOfStackedPoints * 5)) + ', 0.3)')))),
 							$elm$html$Html$Events$onClick(
-							A2($author$project$Report3$IconsWithXY, xDescr, yDescr))
+							A2($author$project$Sleep_efficiency_visualisation$IconsWithXY, xDescr, yDescr))
 						]),
 					_List_Nil),
 					A2(
@@ -9391,7 +9424,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$preserveAspectRatio = F2(
 						$elm_community$typed_svg$TypedSvg$TypesToStrings$meetOrSliceToString(meetOrSlice)
 					])));
 	});
-var $author$project$Report3$scatterplot = F2(
+var $author$project$Sleep_efficiency_visualisation$scatterplot = F2(
 	function (pointData, numOfStackedPointsList) {
 		var data = pointData.data;
 		var xValues = A2(
@@ -9402,7 +9435,7 @@ var $author$project$Report3$scatterplot = F2(
 			data);
 		var xScale = A2(
 			$gampleman$elm_visualization$Scale$linear,
-			_Utils_Tuple2(0, $author$project$Report3$w),
+			_Utils_Tuple2(0, $author$project$Sleep_efficiency_visualisation$w),
 			A2(
 				$elm$core$Maybe$withDefault,
 				_Utils_Tuple2(100.0, 200.0),
@@ -9415,7 +9448,7 @@ var $author$project$Report3$scatterplot = F2(
 			data);
 		var yScale = A2(
 			$gampleman$elm_visualization$Scale$linear,
-			_Utils_Tuple2($author$project$Report3$h, 0),
+			_Utils_Tuple2($author$project$Sleep_efficiency_visualisation$h, 0),
 			A2(
 				$elm$core$Maybe$withDefault,
 				_Utils_Tuple2(100.0, 200.0),
@@ -9424,11 +9457,11 @@ var $author$project$Report3$scatterplot = F2(
 			$elm_community$typed_svg$TypedSvg$svg,
 			_List_fromArray(
 				[
-					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Report3$w + (4 * $author$project$Report3$xPlotPadding), $author$project$Report3$h + (4 * $author$project$Report3$yPlotPadding)),
+					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Sleep_efficiency_visualisation$w + (4 * $author$project$Sleep_efficiency_visualisation$xPlotPadding), $author$project$Sleep_efficiency_visualisation$h + (4 * $author$project$Sleep_efficiency_visualisation$yPlotPadding)),
 					$elm_community$typed_svg$TypedSvg$Attributes$width(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+					$elm_community$typed_svg$TypedSvg$Types$Px(2500)),
 					$elm_community$typed_svg$TypedSvg$Attributes$height(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+					$elm_community$typed_svg$TypedSvg$Types$Px(1000)),
 					A2(
 					$elm_community$typed_svg$TypedSvg$Attributes$preserveAspectRatio,
 					A2($elm_community$typed_svg$TypedSvg$Types$Align, $elm_community$typed_svg$TypedSvg$Types$ScaleMin, $elm_community$typed_svg$TypedSvg$Types$ScaleMin),
@@ -9460,7 +9493,7 @@ var $author$project$Report3$scatterplot = F2(
 									$elm_community$typed_svg$TypedSvg$Attributes$transform(
 									_List_fromArray(
 										[
-											A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$h + $author$project$Report3$yPlotPadding)
+											A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$h + $author$project$Sleep_efficiency_visualisation$yPlotPadding)
 										]))
 								]),
 							_List_fromArray(
@@ -9469,7 +9502,7 @@ var $author$project$Report3$scatterplot = F2(
 									$gampleman$elm_visualization$Axis$bottom,
 									_List_fromArray(
 										[
-											$gampleman$elm_visualization$Axis$tickCount($author$project$Report3$tickCount)
+											$gampleman$elm_visualization$Axis$tickCount($author$project$Sleep_efficiency_visualisation$tickCount)
 										]),
 									xScale),
 									A2(
@@ -9479,14 +9512,14 @@ var $author$project$Report3$scatterplot = F2(
 											$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 											_List_fromArray(
 												['sans-serif'])),
-											$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeCaptionsInPx),
-											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Report3$w / 2),
+											$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeCaptionsInPx),
+											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Sleep_efficiency_visualisation$w / 2),
 											$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(50)
 										]),
 									_List_fromArray(
 										[
 											$elm$html$Html$text(
-											$author$project$Report3$adjustLabels(pointData.xDescription))
+											$author$project$Sleep_efficiency_visualisation$adjustLabels(pointData.xDescription))
 										]))
 								])),
 							A2(
@@ -9496,7 +9529,7 @@ var $author$project$Report3$scatterplot = F2(
 									$elm_community$typed_svg$TypedSvg$Attributes$transform(
 									_List_fromArray(
 										[
-											A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$yPlotPadding)
+											A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$yPlotPadding)
 										]))
 								]),
 							_List_fromArray(
@@ -9505,7 +9538,7 @@ var $author$project$Report3$scatterplot = F2(
 									$gampleman$elm_visualization$Axis$left,
 									_List_fromArray(
 										[
-											$gampleman$elm_visualization$Axis$tickCount($author$project$Report3$tickCount)
+											$gampleman$elm_visualization$Axis$tickCount($author$project$Sleep_efficiency_visualisation$tickCount)
 										]),
 									yScale),
 									A2(
@@ -9515,7 +9548,7 @@ var $author$project$Report3$scatterplot = F2(
 											$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
 											_List_fromArray(
 												['sans-serif'])),
-											$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Report3$fontSizeCaptionsInPx),
+											$elm_community$typed_svg$TypedSvg$Attributes$fontSize($author$project$Sleep_efficiency_visualisation$fontSizeCaptionsInPx),
 											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
 											(pointData.yDescription === 'Smoking status') ? 50 : 0),
 											$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(-30),
@@ -9524,7 +9557,7 @@ var $author$project$Report3$scatterplot = F2(
 									_List_fromArray(
 										[
 											$elm$html$Html$text(
-											$author$project$Report3$adjustLabels(pointData.yDescription))
+											$author$project$Sleep_efficiency_visualisation$adjustLabels(pointData.yDescription))
 										]))
 								]))
 						])),
@@ -9535,12 +9568,12 @@ var $author$project$Report3$scatterplot = F2(
 							$elm_community$typed_svg$TypedSvg$Attributes$transform(
 							_List_fromArray(
 								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Report3$xPlotPadding, $author$project$Report3$yPlotPadding)
+									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Sleep_efficiency_visualisation$xPlotPadding, $author$project$Sleep_efficiency_visualisation$yPlotPadding)
 								]))
 						]),
 					A3(
 						$elm$core$List$map2,
-						A4($author$project$Report3$pointFunc, xScale, yScale, pointData.xDescription, pointData.yDescription),
+						A4($author$project$Sleep_efficiency_visualisation$pointFunc, xScale, yScale, pointData.xDescription, pointData.yDescription),
 						data,
 						numOfStackedPointsList))
 				]));
@@ -9573,7 +9606,7 @@ var $elm_community$list_extra$List$Extra$setAt = F2(
 			$elm$core$Basics$always(value));
 	});
 var $elm$core$String$toFloat = _String_toFloat;
-var $author$project$Report3$dataHandling = function (model) {
+var $author$project$Sleep_efficiency_visualisation$dataHandling = function (model) {
 	var _v0 = model.data;
 	switch (_v0.$) {
 		case 'Failure':
@@ -9582,28 +9615,7 @@ var $author$project$Report3$dataHandling = function (model) {
 			return $elm$html$Html$text('Loading...');
 		default:
 			var fullText = _v0.a;
-			var linesOfDataSet = $author$project$Report3$csvString_to_data(fullText);
-			var listOfNumOfCols = A2($elm$core$List$map, $elm$core$List$length, linesOfDataSet);
-			var listOfNumOfColsAsString = A2(
-				$elm$core$String$join,
-				'\n',
-				A2($elm$core$List$map, $elm$core$String$fromInt, listOfNumOfCols));
-			var listsHaveMissingValues = A2(
-				$elm$core$List$any,
-				function (bo) {
-					return bo ? true : false;
-				},
-				A2(
-					$elm$core$List$map,
-					function (li) {
-						return A2(
-							$elm$core$List$any,
-							function (str) {
-								return (str === '') ? true : false;
-							},
-							li);
-					},
-					linesOfDataSet));
+			var linesOfDataSet = $author$project$Sleep_efficiency_visualisation$csvString_to_data(fullText);
 			var filteredEmptyValuesDataSet = A2(
 				$elm$core$List$filter,
 				$elm$core$List$all(
@@ -9653,15 +9665,6 @@ var $author$project$Report3$dataHandling = function (model) {
 						$elm_community$list_extra$List$Extra$getAt,
 						13,
 						$elm_community$list_extra$List$Extra$transpose(tailListData))));
-			var dataSetRecord = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				$elm$core$List$tail(linesOfDataSet));
-			var dataSetHeader = A2(
-				$elm$core$Maybe$withDefault,
-				_List_Nil,
-				$elm$core$List$head(linesOfDataSet));
-			var numOfColumns = $elm$core$List$length(dataSetHeader);
 			var convertTimeToFloatStringList = function (num) {
 				return A2(
 					$elm$core$List$map,
@@ -9793,7 +9796,7 @@ var $author$project$Report3$dataHandling = function (model) {
 					},
 					model.orderOfDimensions));
 			var multiDimData = A2(
-				$author$project$Report3$listsToMultiDimData,
+				$author$project$Sleep_efficiency_visualisation$listsToMultiDimData,
 				A2(
 					$elm$core$List$map,
 					function (li) {
@@ -9807,12 +9810,6 @@ var $author$project$Report3$dataHandling = function (model) {
 					},
 					movedIndexTailList),
 				movedIndexHeadList);
-			var allListsHaveTheSameLength = A2(
-				$elm$core$List$all,
-				function (num) {
-					return (num === 15) ? true : false;
-				},
-				listOfNumOfCols);
 			var _v1 = dropdownCases(model.selectedYAxisScatterPlot);
 			var yAxisHeadSP = _v1.a;
 			var yAxisTailSPList = _v1.b;
@@ -9822,7 +9819,7 @@ var $author$project$Report3$dataHandling = function (model) {
 			var _v3 = dropdownCases(model.selectedXAxisScatterPlot);
 			var xAxisHeadSP = _v3.a;
 			var xAxisTailSPList = _v3.b;
-			var pointDataTuple = A4($author$project$Report3$listsToPointData, xAxisTailSPList, yAxisTailSPList, xAxisHeadSP, yAxisHeadSP);
+			var pointDataTuple = A4($author$project$Sleep_efficiency_visualisation$listsToPointData, xAxisTailSPList, yAxisTailSPList, xAxisHeadSP, yAxisHeadSP);
 			var _v4 = dropdownCases(model.selectedXAxisIconsPlot);
 			var xAxisHeadIP = _v4.a;
 			var xAxisTailIPList = _v4.b;
@@ -9842,7 +9839,7 @@ var $author$project$Report3$dataHandling = function (model) {
 			var stick1HeadIP = _v9.a;
 			var stick1TailIPList = _v9.b;
 			var iconsMultiDimData = A2(
-				$author$project$Report3$iconListsToMultiDimData,
+				$author$project$Sleep_efficiency_visualisation$iconListsToMultiDimData,
 				_List_fromArray(
 					[xAxisTailIPList, yAxisTailIPList, stick1TailIPList, stick2TailIPList, stick3TailIPList, stick4TailIPList, stick5TailIPList]),
 				_List_fromArray(
@@ -9857,21 +9854,21 @@ var $author$project$Report3$dataHandling = function (model) {
 						_List_Nil,
 						_List_fromArray(
 							[
-								model.showScatterPlot ? A2($author$project$Report3$scatterplot, pointDataTuple.a, pointDataTuple.b) : $elm$html$Html$text('')
+								model.showScatterPlot ? A2($author$project$Sleep_efficiency_visualisation$scatterplot, pointDataTuple.a, pointDataTuple.b) : $elm$html$Html$text('')
 							])),
 						A2(
 						$elm$html$Html$div,
 						_List_Nil,
 						_List_fromArray(
 							[
-								model.showParallelCoordinates ? $author$project$Report3$parallelCoodinatesPlot(multiDimData) : $elm$html$Html$text('')
+								model.showParallelCoordinates ? $author$project$Sleep_efficiency_visualisation$parallelCoodinatesPlot(multiDimData) : $elm$html$Html$text('')
 							])),
 						A2(
 						$elm$html$Html$div,
 						_List_Nil,
 						_List_fromArray(
 							[
-								model.showIcons ? $author$project$Report3$iconsPlot(iconsMultiDimData) : $elm$html$Html$text('')
+								model.showIcons ? $author$project$Sleep_efficiency_visualisation$iconsPlot(iconsMultiDimData) : $elm$html$Html$text('')
 							]))
 					]));
 	}
@@ -9879,7 +9876,7 @@ var $author$project$Report3$dataHandling = function (model) {
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $author$project$Report3$htmlPropsDropDowns = function (num) {
+var $author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns = function (num) {
 	return _List_fromArray(
 		[
 			A2($elm$html$Html$Attributes$style, 'display', 'inline-block'),
@@ -9892,7 +9889,7 @@ var $author$project$Report3$htmlPropsDropDowns = function (num) {
 				A2(
 					$elm$core$Maybe$withDefault,
 					$avh4$elm_color$Color$black,
-					A2($elm_community$list_extra$List$Extra$getAt, num, $author$project$Report3$stickLimbColors))))
+					A2($elm_community$list_extra$List$Extra$getAt, num, $author$project$Sleep_efficiency_visualisation$stickLimbColors))))
 		]);
 };
 var $elm$html$Html$Events$alwaysStop = function (x) {
@@ -9948,7 +9945,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Report3$view = function (model) {
+var $author$project$Sleep_efficiency_visualisation$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -9984,7 +9981,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Report3$ScatterPlot),
+								$elm$html$Html$Events$onClick($author$project$Sleep_efficiency_visualisation$ScatterPlot),
 								A2($elm$html$Html$Attributes$style, 'margin-left', '20px'),
 								A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
 							]),
@@ -9996,25 +9993,25 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Report3$ParallelCoordinates),
+								$elm$html$Html$Events$onClick($author$project$Sleep_efficiency_visualisation$ParallelCoordinates),
 								A2($elm$html$Html$Attributes$style, 'margin-left', '10px'),
 								A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
 							]),
 						_List_fromArray(
 							[
-								$elm$html$Html$text('Show ParallelCoordinates')
+								$elm$html$Html$text('Show Parallel Coordinates')
 							])),
 						A2(
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Report3$Icons),
+								$elm$html$Html$Events$onClick($author$project$Sleep_efficiency_visualisation$Icons),
 								A2($elm$html$Html$Attributes$style, 'margin-left', '10px'),
 								A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
 							]),
 						_List_fromArray(
 							[
-								$elm$html$Html$text('Show Icons')
+								$elm$html$Html$text('Show Stick Figures')
 							]))
 					])),
 				A2($elm$html$Html$br, _List_Nil, _List_Nil),
@@ -10052,7 +10049,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$XAxisScatterPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$XAxisScatterPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -10238,7 +10235,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$YAxisScatterPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$YAxisScatterPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -10474,7 +10471,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$XAxisIconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$XAxisIconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -10660,7 +10657,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$YAxisIconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$YAxisIconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -10834,7 +10831,7 @@ var $author$project$Report3$view = function (model) {
 						A2($elm$html$Html$br, _List_Nil, _List_Nil),
 						A2(
 						$elm$html$Html$div,
-						$author$project$Report3$htmlPropsDropDowns(0),
+						$author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns(0),
 						_List_fromArray(
 							[
 								$elm$html$Html$text('Select Limb 1 Value ')
@@ -10843,7 +10840,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$Stick1IconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$Stick1IconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -11015,7 +11012,7 @@ var $author$project$Report3$view = function (model) {
 							])),
 						A2(
 						$elm$html$Html$div,
-						$author$project$Report3$htmlPropsDropDowns(1),
+						$author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns(1),
 						_List_fromArray(
 							[
 								$elm$html$Html$text('Select Limb 2 Value ')
@@ -11024,7 +11021,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$Stick2IconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$Stick2IconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -11196,7 +11193,7 @@ var $author$project$Report3$view = function (model) {
 							])),
 						A2(
 						$elm$html$Html$div,
-						$author$project$Report3$htmlPropsDropDowns(2),
+						$author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns(2),
 						_List_fromArray(
 							[
 								$elm$html$Html$text('Select Limb 3 Value ')
@@ -11205,7 +11202,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$Stick3IconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$Stick3IconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -11377,7 +11374,7 @@ var $author$project$Report3$view = function (model) {
 							])),
 						A2(
 						$elm$html$Html$div,
-						$author$project$Report3$htmlPropsDropDowns(3),
+						$author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns(3),
 						_List_fromArray(
 							[
 								$elm$html$Html$text('Select Limb 4 Value ')
@@ -11386,7 +11383,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$Stick4IconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$Stick4IconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -11558,7 +11555,7 @@ var $author$project$Report3$view = function (model) {
 							])),
 						A2(
 						$elm$html$Html$div,
-						$author$project$Report3$htmlPropsDropDowns(4),
+						$author$project$Sleep_efficiency_visualisation$htmlPropsDropDowns(4),
 						_List_fromArray(
 							[
 								$elm$html$Html$text('Select Limb 5 Value ')
@@ -11567,7 +11564,7 @@ var $author$project$Report3$view = function (model) {
 						$elm$html$Html$select,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Report3$Stick5IconsPlotSelected)
+								$elm$html$Html$Events$onInput($author$project$Sleep_efficiency_visualisation$Stick5IconsPlotSelected)
 							]),
 						_List_fromArray(
 							[
@@ -11744,16 +11741,16 @@ var $author$project$Report3$view = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$author$project$Report3$dataHandling(model)
+						$author$project$Sleep_efficiency_visualisation$dataHandling(model)
 					]))
 			]));
 };
-var $author$project$Report3$main = $elm$browser$Browser$element(
-	{init: $author$project$Report3$init, subscriptions: $author$project$Report3$subscriptions, update: $author$project$Report3$update, view: $author$project$Report3$view});
-_Platform_export({'Report3':{'init':$author$project$Report3$main(
+var $author$project$Sleep_efficiency_visualisation$main = $elm$browser$Browser$element(
+	{init: $author$project$Sleep_efficiency_visualisation$init, subscriptions: $author$project$Sleep_efficiency_visualisation$subscriptions, update: $author$project$Sleep_efficiency_visualisation$update, view: $author$project$Sleep_efficiency_visualisation$view});
+_Platform_export({'Sleep_efficiency_visualisation':{'init':$author$project$Sleep_efficiency_visualisation$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Report3.init({ node: document.getElementById("elm") });
+  var app = Elm.Sleep_efficiency_visualisation.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {

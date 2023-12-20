@@ -1,30 +1,25 @@
-module Report3 exposing (main)
+module Sleep_efficiency_visualisation exposing (main)
 
 import Axis
 import Browser
 import Color
 import Csv
-import Csv.Decode
-import Date exposing (Interval(..), fromCalendarDate, range, toIsoString)
+import Date exposing (Interval(..))
 import Dict exposing (Dict)
-import Html exposing (Html, br, button, datalist, div, h1, h3, h4, h5, option, pre, select, text)
+import Html exposing (Html, br, button, div, h1, h3, h4, option, pre, select, text)
 import Html.Attributes exposing (selected, value)
-import Html.Events exposing (onClick, onInput)
+import Html.Events exposing (onInput)
 import Http
 import List.Extra
-import Maybe.Extra
 import Path exposing (Path)
-import Scale exposing (ContinuousScale, point)
-import Scale.Color
-import Set
+import Scale exposing (ContinuousScale)
 import Shape
 import Statistics
 import Time exposing (Month(..))
-import TypedSvg exposing (circle, g, line, path, rect, style, svg, text_)
-import TypedSvg.Attributes exposing (class, d, fill, fontFamily, fontSize, opacity, stroke, strokeWidth, textAnchor, transform, viewBox)
+import TypedSvg exposing (circle, g, line, style, svg, text_)
+import TypedSvg.Attributes exposing (class, fill, fontFamily, fontSize, stroke, strokeWidth, textAnchor, transform, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
-import TypedSvg.Events exposing (onClick)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Paint(..), Transform(..))
 
 
@@ -83,7 +78,7 @@ fontSizeHoverInPx =
 
 
 
--- TYPES
+-- TYPE ALIASES
 
 
 type alias Point =
@@ -107,47 +102,8 @@ type alias MultiDimData =
     }
 
 
-type alias PointStackData =
-    { xyTuple : ( Float, Float )
-    , stackingHeight : Int
-    }
 
-
-type alias SleepEfficiency =
-    { id : Int -- 0
-    , age : Int -- 1
-    , gender : String -- 2
-    , bedtime : String -- 3
-    , wakeupTime : String -- 4 Convert to Time??
-    , sleepDuration : Float -- 5
-    , sleepEfficiency : Float -- 6
-    , rEMSleepPercentage : Int -- 7
-    , deepSleepPercentage : Int -- 8
-    , lightSleepPercentage : Int -- 9
-    , awakenings : Float -- 10 Convert to Int?
-    , caffeineConsumption : Float -- 11
-    , alcoholConsumption : Float -- 12 Could be possible to convert to Int without loss too.
-    , smokingStatus : Bool -- 13
-    , exerciseFrequency : Float -- 14 Could be possible to convert to Int without loss too.
-    }
-
-
-
--- MAIN
-
-
-main : Program () Model Msg
-main =
-    Browser.element
-        { init = init
-        , update = update
-        , subscriptions = subscriptions
-        , view = view
-        }
-
-
-
--- MODEL
+---- MODEL
 
 
 type alias Model =
@@ -165,57 +121,17 @@ type alias Model =
     , showParallelCoordinates : Bool
     , showIcons : Bool
     , orderOfDimensions : List Int
-
-    -- , scatterPlotWithXY : ( String, String )
     }
+
+
+
+-- TYPES
 
 
 type FileReceiving
     = Failure
     | Loading
     | Success String
-
-
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( { data = Loading
-      , selectedXAxisScatterPlot = "ID"
-      , selectedYAxisScatterPlot = "Age"
-      , selectedXAxisIconsPlot = "ID"
-      , selectedYAxisIconsPlot = "Age"
-      , selectedStick1IconsPlot = "Sleep duration"
-      , selectedStick2IconsPlot = "Sleep efficiency"
-      , selectedStick3IconsPlot = "REM sleep percentage"
-      , selectedStick4IconsPlot = "Deep sleep percentage"
-      , selectedStick5IconsPlot = "Light sleep percentage"
-      , showScatterPlot = True
-      , showParallelCoordinates = False
-      , showIcons = False
-      , orderOfDimensions = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
-
-      --   , scatterPlotWithXY = ( "ID", "Age" )
-      }
-    , getText
-    )
-
-
-getText : Cmd Msg
-getText =
-    Http.get
-        { -- url = "https://cloud.informatik.uni-halle.de/s/xD7kiaCPxnXsMT3/download"
-          url = "https://clemensweisse.github.io/" ++ "Sleep_Efficiency.csv"
-        --   url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
-        , expect = Http.expectString GotText
-        }
-
-
-csvString_to_data : String -> List (List String)
-csvString_to_data csvRaw =
-    Csv.split csvRaw
-
-
-
--- UPDATE
 
 
 type Msg
@@ -235,6 +151,63 @@ type Msg
     | ChangeDimensions Int Int
     | ScatterPlotWithXY String String
     | IconsWithXY String String
+
+
+
+-- MAIN
+
+
+main : Program () Model Msg
+main =
+    Browser.element
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
+
+
+
+-- INIT
+
+
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( { data = Loading
+      , selectedXAxisScatterPlot = "ID"
+      , selectedYAxisScatterPlot = "Age"
+      , selectedXAxisIconsPlot = "ID"
+      , selectedYAxisIconsPlot = "Age"
+      , selectedStick1IconsPlot = "Sleep duration"
+      , selectedStick2IconsPlot = "Sleep efficiency"
+      , selectedStick3IconsPlot = "REM sleep percentage"
+      , selectedStick4IconsPlot = "Deep sleep percentage"
+      , selectedStick5IconsPlot = "Light sleep percentage"
+      , showScatterPlot = True
+      , showParallelCoordinates = False
+      , showIcons = False
+      , orderOfDimensions = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+      }
+    , getText
+    )
+
+
+getText : Cmd Msg
+getText =
+    Http.get
+        { --   url = "http://localhost:8080/" ++ "Sleep_Efficiency.csv"
+          url = "https://clemensweisse.github.io/" ++ "Sleep_Efficiency.csv"
+        , expect = Http.expectString GotText
+        }
+
+
+csvString_to_data : String -> List (List String)
+csvString_to_data csvRaw =
+    Csv.split csvRaw
+
+
+
+-- UPDATE
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -321,8 +294,8 @@ view model =
         , br [] []
         , div []
             [ button [ Html.Events.onClick <| ScatterPlot, Html.Attributes.style "margin-left" "20px", Html.Attributes.style "margin-right" "10px" ] [ text "Show Scatterplot" ]
-            , button [ Html.Events.onClick <| ParallelCoordinates, Html.Attributes.style "margin-left" "10px", Html.Attributes.style "margin-right" "10px" ] [ text "Show ParallelCoordinates" ]
-            , button [ Html.Events.onClick <| Icons, Html.Attributes.style "margin-left" "10px", Html.Attributes.style "margin-right" "10px" ] [ text "Show Icons" ]
+            , button [ Html.Events.onClick <| ParallelCoordinates, Html.Attributes.style "margin-left" "10px", Html.Attributes.style "margin-right" "10px" ] [ text "Show Parallel Coordinates" ]
+            , button [ Html.Events.onClick <| Icons, Html.Attributes.style "margin-left" "10px", Html.Attributes.style "margin-right" "10px" ] [ text "Show Stick Figures" ]
             ]
         , br [] []
         , div
@@ -404,12 +377,9 @@ view model =
         , div
             [ if model.showIcons then
                 Html.Attributes.style "" ""
-                -- Html.Attributes.style "display" "inline-block"
 
               else
                 Html.Attributes.style "display" "none"
-
-            -- Html.Attributes.style "visibility" "hidden"
             ]
             [ h4 [ Html.Attributes.style "text-align" "center" ]
                 [ text
@@ -456,10 +426,6 @@ view model =
             , br [] []
             , br [] []
             , div (htmlPropsDropDowns 0)
-                -- [ Html.Attributes.style "margin-left" "50px"
-                -- , Html.Attributes.style "margin-right" "10px"
-                -- , Html.Attributes.style "color" (Color.toCssString (stickLimbColors |> List.Extra.getAt 0 |> Maybe.withDefault Color.black))
-                -- ]
                 [ Html.text "Select Limb 1 Value " ]
             , select [ onInput Stick1IconsPlotSelected ]
                 [ option [ value "ID", selected ("ID" == model.selectedStick1IconsPlot) ] [ text "ID" ]
@@ -552,23 +518,6 @@ view model =
                 ]
             ]
         , br [] []
-
-        -- , div []
-        --     [ text
-        --         (if model.showScatterPlot then
-        --             "True"
-        --          else
-        --             "False"
-        --         )
-        --     ]
-        -- , div []
-        --     [ text
-        --         (if model.showParallelCoordinates then
-        --             "True"
-        --          else
-        --             "False"
-        --         )
-        --     ]
         , div [] [ dataHandling model ]
         ]
 
@@ -595,55 +544,6 @@ dataHandling model =
             let
                 linesOfDataSet =
                     csvString_to_data fullText
-
-                dataSetHeader =
-                    List.head linesOfDataSet |> Maybe.withDefault []
-
-                dataSetRecord =
-                    List.tail linesOfDataSet |> Maybe.withDefault []
-
-                numOfColumns =
-                    List.length dataSetHeader
-
-                listOfNumOfCols =
-                    List.map List.length linesOfDataSet
-
-                listOfNumOfColsAsString =
-                    List.map String.fromInt listOfNumOfCols |> String.join "\n"
-
-                allListsHaveTheSameLength =
-                    List.all
-                        (\num ->
-                            if num == 15 then
-                                True
-
-                            else
-                                False
-                        )
-                        listOfNumOfCols
-
-                listsHaveMissingValues =
-                    List.map
-                        (\li ->
-                            List.any
-                                (\str ->
-                                    if str == "" then
-                                        True
-
-                                    else
-                                        False
-                                )
-                                li
-                        )
-                        linesOfDataSet
-                        |> List.any
-                            (\bo ->
-                                if bo then
-                                    True
-
-                                else
-                                    False
-                            )
 
                 filteredEmptyValuesDataSet =
                     List.filter
@@ -747,98 +647,6 @@ dataHandling model =
                              -- ["01", "30"] -> "1.5"
                             )
 
-                -- convertBedTimeToList =
-                --     tailListData
-                --         |> List.Extra.transpose
-                --         |> List.Extra.getAt 3
-                --         |> Maybe.withDefault []
-                --         |> List.map (\el -> List.Extra.getAt 1 (String.split " " el) |> Maybe.withDefault "")
-                --         -- "2021-07-03 01:30:00" -> "01:30:00"
-                --         |> List.map
-                --             (\el ->
-                --                 String.split ":" el
-                --                     -- "01:30:00" -> ["01", "30", "00"]
-                --                     |> List.take 2
-                --              -- ["01", "30", "00"] -> ["01", "30"]
-                --             )
-                --         |> List.map
-                --             (\li ->
-                --                 (li
-                --                     |> List.Extra.getAt 0
-                --                     -- ["01", "30"] -> "01"
-                --                     |> Maybe.withDefault ""
-                --                     |> String.toFloat
-                --                     -- "01" -> 1
-                --                     |> Maybe.withDefault 0.0
-                --                     |> String.fromFloat
-                --                  -- 1 -> "1"
-                --                 )
-                --                     ++ "."
-                --                     ++ (if (li |> List.Extra.getAt 1 |> Maybe.withDefault "") == "30" then
-                --                             -- ["01", "30"] -> "30"
-                --                             "5"
-                --                             -- "30" -> "5"
-                --                         else
-                --                             "0"
-                --                        )
-                --              -- ["01", "30"] -> "1.5"
-                --             )
-                -- convertBedTimeToDecimal =
-                --     List.map
-                --         (\li ->
-                --             (li
-                --                 |> List.Extra.getAt 0
-                --                 |> Maybe.withDefault ""
-                --                 |> String.toFloat
-                --                 |> Maybe.withDefault 0.0
-                --                 |> String.fromFloat
-                --             )
-                --                 ++ "."
-                --                 ++ (if (li |> List.Extra.getAt 1 |> Maybe.withDefault "") == "30" then
-                --                         "5"
-                --                     else
-                --                         "0"
-                --                    )
-                --         )
-                --         convertBedTimeToList
-                -- idList =
-                --     List.Extra.getAt 0 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-                -- ageList =
-                --     List.Extra.getAt 1 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-                -- genderList =
-                --     List.Extra.getAt 2 filtTranspData |> Maybe.withDefault []
-                -- bedtimeList =
-                --     List.Extra.getAt 3 filtTranspData |> Maybe.withDefault []
-                -- wakeupTimeList =
-                --     List.Extra.getAt 4 filtTranspData |> Maybe.withDefault []
-                -- sleepDurationList =
-                --     List.Extra.getAt 5 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-                -- sleepEfficiencyList =
-                --     List.Extra.getAt 6 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-                -- rEMSleepPercentageList =
-                --     List.Extra.getAt 7 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-                -- deepSleepPercentageList =
-                --     List.Extra.getAt 8 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-                -- lightSleepPercentageList =
-                --     List.Extra.getAt 9 filtTranspData |> Maybe.withDefault [] |> List.map (String.toInt >> Maybe.withDefault 0)
-                -- awakeningsList =
-                --     List.Extra.getAt 10 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-                -- caffeineConsumptionList =
-                --     List.Extra.getAt 11 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-                -- alcoholConsumptionList =
-                --     List.Extra.getAt 12 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
-                -- smokingStatusList =
-                --     List.Extra.getAt 13 filtTranspData
-                --         |> Maybe.withDefault []
-                --         |> List.map
-                --             (\str ->
-                --                 if str == "True" then
-                --                     True
-                --                 else
-                --                     False
-                --             )
-                -- exerciseFrequencyList =
-                --     List.Extra.getAt 14 filtTranspData |> Maybe.withDefault [] |> List.map (String.toFloat >> Maybe.withDefault 0.0)
                 floatTuple : Int -> ( String, List Float )
                 floatTuple num =
                     ( List.Extra.getAt num headTailTranspData |> Maybe.withDefault [] |> List.head |> Maybe.withDefault ""
@@ -930,20 +738,6 @@ dataHandling model =
                         xAxisHeadSP
                         yAxisHeadSP
 
-                -- filteredHeadList =
-                --     headListData
-                --         |> List.Extra.removeAt 13
-                --         |> List.Extra.removeAt 4
-                --         |> List.Extra.removeAt 3
-                --         |> List.Extra.removeAt 2
-                -- filteredTailList =
-                --     tailListData
-                --         |> List.Extra.transpose
-                --         |> List.Extra.removeAt 13
-                --         |> List.Extra.removeAt 4
-                --         |> List.Extra.removeAt 3
-                --         |> List.Extra.removeAt 2
-                --         |> List.Extra.transpose
                 movedIndexHeadList =
                     List.map (\num -> List.Extra.getAt num headListData |> Maybe.withDefault "") model.orderOfDimensions
 
@@ -977,46 +771,9 @@ dataHandling model =
                         , stick4HeadIP
                         , stick5HeadIP
                         ]
-
-                -- data =
-                --     listListStringToString linesOfDataSet
-                -- filteredData =
-                --     listListStringToString filteredEmptyValuesDataSet
             in
             pre []
-                [ --     div [] [ text "Test" ]
-                  -- , div []
-                  --     [ text
-                  --         (if allListsHaveTheSameLength then
-                  --             "True"
-                  --          else
-                  --             "False"
-                  --         )
-                  --     ]
-                  -- , div []
-                  --     [ text
-                  --         (if listsHaveMissingValues then
-                  --             "True"
-                  --          else
-                  --             "False"
-                  --         )
-                  --     ]
-                  -- , div [] [ text (String.fromInt numOfColumns) ]
-                  -- , div [] [ text listOfNumOfColsAsString ]
-                  -- , div [] [ text (String.fromInt <| List.length filteredEmptyValuesDataSet) ]
-                  -- , div [] [ text data ]
-                  -- , div [] [ text filteredData ]
-                  -- , div [] [ text (List.Extra.getAt 0 filteredEmptyValuesDataSet |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (List.Extra.getAt 1 filteredEmptyValuesDataSet |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (List.Extra.getAt 2 filteredEmptyValuesDataSet |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (List.Extra.transpose filteredEmptyValuesDataSet |> List.Extra.getAt 0 |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (List.Extra.transpose filteredEmptyValuesDataSet |> List.Extra.getAt 1 |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (List.Extra.transpose filteredEmptyValuesDataSet |> List.Extra.getAt 2 |> Maybe.withDefault [] |> String.join ", ") ]
-                  -- , div [] [ text (idList |> List.map String.fromInt |> String.join ", ") ]
-                  -- , div [] [ text model.selectedOption1 ]
-                  -- , div [] [ text model.selectedOption2 ]
-                  --   div [] [ text ("[" ++ (model.orderOfDimensions |> List.map String.fromInt |> String.join ", ") ++ "]") ]
-                  div []
+                [ div []
                     [ if model.showScatterPlot then
                         scatterplot (Tuple.first pointDataTuple) (Tuple.second pointDataTuple)
 
@@ -1037,37 +794,7 @@ dataHandling model =
                       else
                         text ""
                     ]
-
-                -- , div [] [ text (String.join ", " smokingNo0Yes1List) ]
-                -- , div [] []
-                -- , div [] [ text <| String.fromInt <| List.length smokingNo0Yes1List ]
-                -- , div [] [ text (String.join "\n" <| List.map (\li -> String.join ", " li) filtTranspData) ]
-                -- , div [] [ text (filtTranspData |> List.map (List.length >> String.fromInt) |> String.join "\n") ]
-                -- , div [] [ text (String.join ", " <| List.map String.fromInt (List.Extra.initialize 5 (\el -> el * 10))) ]
-                -- , div[][text (degrees 60 |> String.fromFloat)]
-                -- , div[][text (cos (degrees 45) |> String.fromFloat)]
-                -- , div [] [ text (movedIndexHeadList |> String.join ", ") ]
-                -- , div [] [ text (filteredHeadList |> String.join ", ") ]
-                -- , div [] [ text (movedIndexTailList |> List.map (String.join ", ") |> String.join "\n") ]
-                -- , div [] [ text (xAxisTailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (yAxisTailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (stick1TailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (stick2TailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (stick3TailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (stick4TailIPList |> List.map String.fromFloat |> String.join ", ") ]
-                -- , div [] [ text (stick5TailIPList |> List.map String.fromFloat |> String.join ", ") ]
                 ]
-
-
-
--- appendIndexedElement : Int -> List(String) -> List(String)
--- appendIndexedElement num list =
-
-
-listListStringToString : List (List String) -> String
-listListStringToString listlist =
-    List.map (\li -> String.join ", " li) listlist
-        |> String.join "\n"
 
 
 adjustLabels : String -> String
@@ -1131,11 +858,10 @@ scatterplot pointData numOfStackedPointsList =
     in
     svg
         [ viewBox 0 0 (w + 4 * xPlotPadding) (h + 4 * yPlotPadding)
-        , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100
-        , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
+        , TypedSvg.Attributes.width <| TypedSvg.Types.Px 2500 -- Tested with 2560 x 1440 resolution
+        , TypedSvg.Attributes.height <| TypedSvg.Types.Px 1000
         , TypedSvg.Attributes.preserveAspectRatio (TypedSvg.Types.Align TypedSvg.Types.ScaleMin TypedSvg.Types.ScaleMin) TypedSvg.Types.Slice
         ]
-        -- .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 230, 230,0.1); }
         [ style []
             [ TypedSvg.Core.text """
              .point text { display: none; }
@@ -1182,40 +908,21 @@ scatterplot pointData numOfStackedPointsList =
 pointFunc : ContinuousScale Float -> ContinuousScale Float -> String -> String -> Point -> Int -> Svg Msg
 pointFunc scaleX scaleY xDescr yDescr xyPoint numOfStackedPoints =
     g [ class [ "point" ], fontSize <| fontSizeHoverInPx, fontFamily [ "sans-serif" ] ]
-        [ -- style []
-          -- [ TypedSvg.Core.text
-          -- -- ".point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 70, 70, 1); }"
-          --     (".point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, "
-          -- ++ String.fromInt (255 - (numOfStackedPoints * 5))
-          -- ++ ", "
-          -- -- ++ "255"
-          -- ++ String.fromInt (255 - (numOfStackedPoints * 5))
-          --         ++ ", 0.3); }"
-          --     )
-          -- ]
-          circle
+        [ circle
             [ cx (Scale.convert scaleX xyPoint.x)
             , cy (Scale.convert scaleY xyPoint.y)
             , r (4 + toFloat numOfStackedPoints)
             , Html.Attributes.style "stroke" "rgba(0, 0, 0,0.4)"
             , Html.Attributes.style "fill" ("rgba(255, " ++ String.fromInt (255 - (numOfStackedPoints * 5)) ++ ", " ++ String.fromInt (255 - (numOfStackedPoints * 5)) ++ ", 0.3)")
             , Html.Events.onClick <| IconsWithXY xDescr yDescr
-
-            -- , Html.Attributes.style "fill" "rgba(255, 70, 70, 1)"
             ]
             []
-
-        -- TypedSvg.style[][TypedSvg.Core.text "stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 70, 70, 1);"]
         , text_
             [ x (Scale.convert scaleX xyPoint.x)
             , y (Scale.convert scaleY xyPoint.y - 10)
-
-            --, fontSize (TypedSvg.Types.px 30)
             , textAnchor TypedSvg.Types.AnchorMiddle
             ]
             [ text xyPoint.pointName
-
-            -- text (String.fromInt (255 - (numOfStackedPoints * 10)))
             ]
         ]
 
@@ -1223,7 +930,6 @@ pointFunc scaleX scaleY xDescr yDescr xyPoint numOfStackedPoints =
 listsToPointData : List Float -> List Float -> String -> String -> ( PointData, List Int )
 listsToPointData listX listY nameX nameY =
     let
-        -- stackedList = List.map2 (\x y -> ) listX listY
         xyTupleList =
             List.map2 (\x y -> ( x, y )) listX listY
 
@@ -1251,8 +957,6 @@ listsToPointData listX listY nameX nameY =
                     )
                 )
                 stackedList
-
-        -- List.map2 (\x y -> Point ("(" ++ nameX ++ ": " ++ String.fromFloat x ++ ", " ++ nameY ++ ": " ++ String.fromFloat y ++ ")") x y) listX listY
     in
     ( PointData nameX nameY (List.map Tuple.first pointsList), List.map Tuple.second pointsList )
 
@@ -1356,17 +1060,13 @@ parallelCoodinatesPlot multiDimData =
                     [ text (Maybe.withDefault "Default" (List.Extra.getAt num multiDimData.dimDescription))
                     ]
                 , text_ [ fontFamily [ "sans-serif" ], fontSize fontSizeParallelCoordInPx, x 40, y -60, textAnchor AnchorMiddle, Html.Events.onClick <| ChangeDimensions num (modBy numberOfAttributes (num + 1)) ] [ text (String.fromChar '→') ]
-
-                -- , text_ [ fontFamily [ "sans-serif" ], fontSize (Px 20), x 0, y -80, textAnchor AnchorMiddle] [ text ("A" ++ (Maybe.withDefault "Age" (List.Extra.getAt num multiDimData.dimDescription)) ++ "A") ]
                 ]
     in
     svg
         [ TypedSvg.Attributes.style "background: white"
         , viewBox 70 0 (2 * w + xPlotPadding) (h + 2 * yPlotPadding)
-
-        -- , viewBox 0 0 4600 (h + 2 * yPlotPadding)
-        , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100
-        , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
+        , TypedSvg.Attributes.width <| TypedSvg.Types.Px 2550 -- Tested with 2560 x 1440 resolution
+        , TypedSvg.Attributes.height <| TypedSvg.Types.Px 650
         ]
         [ style []
             [ text
@@ -1379,37 +1079,6 @@ parallelCoodinatesPlot multiDimData =
                 ++ lines
             )
         ]
-
-
-
--- svg
---     [ viewBox 0 0 (2 * w + xPlotPadding) (h + 2 * yPlotPadding)
---     , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100
---     , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
---     , TypedSvg.Attributes.style "background: white"
---     ]
---     [ style []
---         [ text
---             (".axis g g text {font-size: 15px; display: none;}"
---                 ++ ".axis:hover g g text {font-size: 20px; display: inline;}"
---             )
---         ]
---     , g [ class [ "axis" ] ]
---         (List.map (\num -> verticalLines num) indexNumberList
---             ++ lines
---         )
---     ]
--- div []
---     [ div []
---         [ text (List.map (String.join ", " << (\li -> List.map String.fromFloat li)) yList |> String.join "\n")
---         ]
---     , div [] []
---     , div [] []
---     , div [] []
---     , div []
---         [ text (List.map (String.join ", " << (\li -> List.map String.fromFloat li)) pointValues |> String.join "\n")
---         ]
---     ]
 
 
 listsToMultiDimData : List (List Float) -> List String -> MultiDimData
@@ -1515,41 +1184,53 @@ iconsPlot multiDimData =
             [ xScale, yScale, stick1Scale, stick2Scale, stick3Scale, stick4Scale, stick5Scale ]
     in
     svg
-        [ viewBox 0 0 (w + 4 * xPlotPadding) (h + 4 * yPlotPadding)
-        , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100
-        , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
-
-        -- , TypedSvg.Attributes.preserveAspectRatio (TypedSvg.Types.Align TypedSvg.Types.ScaleMin TypedSvg.Types.ScaleMin) TypedSvg.Types.Slice
+        [ viewBox 0 0 (w + 4 * xPlotPadding) (h + 4 * (yPlotPadding + 100))
+        , TypedSvg.Attributes.width <| TypedSvg.Types.Px 2500 -- Tested with 2560 x 1440 resolution
+        , TypedSvg.Attributes.height <| TypedSvg.Types.Px 1440
         ]
-        -- .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 230, 230,0.1); }
         [ style []
             [ TypedSvg.Core.text """
-             .stick:hover { stroke-width: 1.5mm; }
-             .axis text {font-size: 23px; display: inline;}
+            .stick text { display: none; }
+            .stick:hover text { display: inline; }
+            .axis g text {font-size: 23px; display: inline;}
+            .stick:hover { stroke-width: 1.5mm; }
+            .axis text {font-size: 23px; display: inline;}
            """ ]
         , g [ class [ "axis" ] ]
-            [ g [ transform [ Translate xPlotPadding (h + yPlotPadding) ] ]
+            [ g [ transform [ Translate xPlotPadding (h + (yPlotPadding + 100)) ] ]
                 -- X AXIS
                 [ Axis.bottom [ Axis.tickCount tickCount ] xScale
                 , text_ [ fontFamily [ "sans-serif" ], fontSize fontSizeCaptionsInPx, x (w / 2), y 50 ]
                     [ text
-                        (multiDimData.dimDescription |> List.Extra.getAt 0 |> Maybe.withDefault "")
+                        (multiDimData.dimDescription |> List.Extra.getAt 0 |> Maybe.withDefault "" |> adjustLabels)
                     ]
                 ]
 
             -- Y AXIS
-            , g [ transform [ Translate xPlotPadding yPlotPadding ] ]
+            , g [ transform [ Translate xPlotPadding (yPlotPadding + 100) ] ]
                 [ Axis.left [ Axis.tickCount tickCount ] yScale
-                , text_ [ fontFamily [ "sans-serif" ], fontSize fontSizeCaptionsInPx, x 0, y -30, textAnchor AnchorMiddle ]
+                , text_
+                    [ fontFamily [ "sans-serif" ]
+                    , fontSize fontSizeCaptionsInPx
+                    , x
+                        (if (multiDimData.dimDescription |> List.Extra.getAt 1 |> Maybe.withDefault "") == "Smoking status" then
+                            50
+
+                         else
+                            0
+                        )
+                    , y -30
+                    , textAnchor AnchorMiddle
+                    ]
                     [ text
-                        (multiDimData.dimDescription |> List.Extra.getAt 1 |> Maybe.withDefault "")
+                        (multiDimData.dimDescription |> List.Extra.getAt 1 |> Maybe.withDefault "" |> adjustLabels)
                     ]
                 ]
             ]
 
         -- RENDER STICKFIGURES
-        , g [ transform [ Translate xPlotPadding yPlotPadding ], Html.Events.onClick <| ParallelCoordinates ]
-            (List.map (drawStickFigure scaleList) data)
+        , g [ transform [ Translate xPlotPadding (yPlotPadding + 100) ], Html.Events.onClick <| ParallelCoordinates ]
+            (List.map (drawStickFigure scaleList multiDimData.dimDescription) data)
         ]
 
 
@@ -1585,9 +1266,12 @@ wideAngleExtent values =
         |> Maybe.withDefault ( -0.5, 0.5 )
 
 
-drawStickFigure : List (ContinuousScale Float) -> MultiDimPoint -> Svg msg
-drawStickFigure scaleList multiDimPoint =
+drawStickFigure : List (ContinuousScale Float) -> List String -> MultiDimPoint -> Svg msg
+drawStickFigure scaleList dimDescription multiDimPoint =
     let
+        numberOfDims =
+            List.length dimDescription
+
         length =
             20
 
@@ -1647,6 +1331,26 @@ drawStickFigure scaleList multiDimPoint =
 
         y6Pos =
             y1Pos + (length * sin angle5)
+
+        stickFigureText : Int -> Svg msg
+        stickFigureText num =
+            text_
+                [ x x1Pos
+                , y (y1Pos - (40 + toFloat ((numberOfDims - 1) - num) * 20))
+                , textAnchor TypedSvg.Types.AnchorMiddle
+                ]
+                [ text
+                    ((dimDescription |> List.Extra.getAt num |> Maybe.withDefault "")
+                        ++ ": "
+                        ++ (multiDimPoint.value |> List.Extra.getAt num |> Maybe.withDefault 0.0 |> String.fromFloat)
+                        ++ (if num == 0 then
+                                ""
+
+                            else
+                                ", "
+                           )
+                    )
+                ]
     in
     g [ class [ "stick" ], fontSize <| fontSizeHoverInPx, fontFamily [ "sans-serif" ], strokeWidth (Mm 0.5) ]
         [ line [ x1 x1Pos, y1 y1Pos, x2 x2Pos, y2 y2Pos, stroke (Paint (stickLimbColors |> List.Extra.getAt 0 |> Maybe.withDefault Color.black)) ] []
@@ -1654,4 +1358,11 @@ drawStickFigure scaleList multiDimPoint =
         , line [ x1 x2Pos, y1 y2Pos, x2 x4Pos, y2 y4Pos, stroke (Paint (stickLimbColors |> List.Extra.getAt 2 |> Maybe.withDefault Color.black)) ] []
         , line [ x1 x1Pos, y1 y1Pos, x2 x5Pos, y2 y5Pos, stroke (Paint (stickLimbColors |> List.Extra.getAt 3 |> Maybe.withDefault Color.black)) ] []
         , line [ x1 x1Pos, y1 y1Pos, x2 x6Pos, y2 y6Pos, stroke (Paint (stickLimbColors |> List.Extra.getAt 4 |> Maybe.withDefault Color.black)) ] []
+        , stickFigureText 0
+        , stickFigureText 1
+        , stickFigureText 2
+        , stickFigureText 3
+        , stickFigureText 4
+        , stickFigureText 5
+        , stickFigureText 6
         ]
